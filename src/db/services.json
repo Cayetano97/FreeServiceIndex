@@ -1,0 +1,45 @@
+{
+  "categories": ["All", "Música", "Streaming"],
+  "services": [
+    {
+      "id": 1,
+      "title": "xManager",
+      "description": "Descarga una versión parcheada de Spotify y escucha sin limites",
+      "category": "Música",
+      "downloadLink": "https://www.xmanagerapp.com/",
+      "icon": "https://static.wixstatic.com/media/01dd63_390e7a690a1b4699b05a6978fa3f69a8~mv2.gif"
+    },
+    {
+      "id": 2,
+      "title": "ReVanced",
+      "description": "Parchea YouTube para no ver anuncios.",
+      "category": "Streaming",
+      "downloadLink": "https://revanced.app/",
+      "icon": "https://avatars.githubusercontent.com/u/101597779?s=200&v=4"
+    },
+    {
+      "id": 3,
+      "title": "NewPipe",
+      "description": "Utiliza YouTube Music como Spotify.",
+      "category": "Música",
+      "downloadLink": "https://revanced.app/",
+      "icon": "https://github.com/TeamNewPipe/NewPipe/raw/dev/assets/new_pipe_icon_5.png"
+    },
+    {
+      "id": 4,
+      "title": "SpotX",
+      "description": "Descarga una versión parcheada de Spotify y escucha sin limites [Windows]",
+      "category": "Música",
+      "downloadLink": "https://github.com/SpotX-Official/SpotX",
+      "icon": "https://avatars.githubusercontent.com/u/146193339?s=48&v=4"
+    },
+    {
+      "id": 5,
+      "title": "Stremio",
+      "description": "Plataforma para ver peliculas y series.",
+      "category": "Streaming",
+      "downloadLink": "https://www.stremio.com/",
+      "icon": "https://stremio.stream/wp-content/uploads/2022/04/stremio-icon.png"
+    }
+  ]
+}
