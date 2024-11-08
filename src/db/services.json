@@ -1,5 +1,5 @@
 {
-  "categories": ["All", "Música", "Streaming"],
+  "categories": ["All", "Addons Kodi", "Lectura", "Música", "Streaming"],
   "services": [
     {
       "id": 1,
@@ -39,7 +39,32 @@
       "description": "Plataforma para ver peliculas y series.",
       "category": "Streaming",
       "downloadLink": "https://www.stremio.com/",
-      "icon": "https://stremio.stream/wp-content/uploads/2022/04/stremio-icon.png"
+      "icon": "https://www.stremio.com/website/stremio-logo-small.png"
+    },
+
+    {
+      "id": 6,
+      "title": "Magellan",
+      "description": "Acceso a canales de TV en vivo en todo el mundo.",
+      "category": "Addons Kodi",
+      "downloadLink": "https://mundokodi.com/addon-magellan-en-kodi/",
+      "icon": "https://archive.org/download/magellan-kodi-addon/Magellan%20Kodi%20Addon.jpg"
+    },
+    {
+      "id": 7,
+      "title": "SmarTube",
+      "description": "Aplicación de YouTube sin anuncios para SmarTV.",
+      "category": "Streaming",
+      "downloadLink": "https://smarttubeapp.github.io/",
+      "icon": "https://github.com/yuliskov/SmartTube/raw/master/smarttubetv/src/ststable/res/mipmap-nodpi/app_icon.png"
+    },
+    {
+      "id": 8,
+      "title": "Tachiyomi",
+      "description": "Lector de manga gratuito y de código abierto con soporte para múltiples fuentes.",
+      "category": "Lectura",
+      "downloadLink": "https://tachiyomi.org/",
+      "icon": "https://tachiyomi.org/img/logo-128px.png"
     }
   ]
 }
