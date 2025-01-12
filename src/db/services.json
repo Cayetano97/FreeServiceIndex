@@ -52,7 +52,7 @@
     },
     {
       "id": 7,
-      "title": "SmarTube",
+      "title": "SmartTube",
       "description": "Aplicación de YouTube sin anuncios para SmarTV.",
       "category": "Streaming",
       "downloadLink": "https://smarttubeapp.github.io/",
@@ -65,6 +65,14 @@
       "category": "Lectura",
       "downloadLink": "https://tachiyomi.org/",
       "icon": "https://tachiyomi.org/img/logo-128px.png"
+    },
+    {
+      "id": 9,
+      "title": "Anilab",
+      "description": "Aplicación Android / TV para ver anime.",
+      "category": "Streaming",
+      "downloadLink": "https://anilab.to/",
+      "icon": "https://anilab.to/images/logo@2x.svg"
     }
   ]
 }
