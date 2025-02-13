@@ -21,7 +21,10 @@ export default function ServiceCard({
       <CardHeader className="space-y-1">
         <div className="flex items-center justify-between">
           <div className="bg-secondary/80 p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
-            <img src={icon} alt={`${title} icon`} className="w-5 h-5" />
+            {/* Envuelve la imagen con un enlace */}
+            <a href={downloadLink} target="_blank" rel="noopener noreferrer">
+              <img src={icon} alt={`${title} icon`} className="w-5 h-5" />
+            </a>
           </div>
           <Badge variant="secondary" className="bg-secondary/80">
             {category}
