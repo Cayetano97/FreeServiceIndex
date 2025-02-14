@@ -1,5 +1,5 @@
 {
-  "categories": ["All", "Addons Kodi", "Lectura", "Música", "Streaming"],
+  "categories": ["All", "Addons Kodi", "Lectura", "Música", "Streaming", "PC"],
   "services": [
     {
       "id": 1,
@@ -73,6 +73,14 @@
       "category": "Streaming",
       "downloadLink": "https://anilab.to/",
       "icon": "https://anilab.to/images/logo@2x.svg"
+    },
+    {
+      "id": 10,
+      "title": "Microsoft Activation Scripts (MAS)",
+      "description": "Activa Windows y Office de forma permanente",
+      "category": "PC",
+      "downloadLink": "https://massgrave.dev/",
+      "icon": "https://massgrave.dev/img/logo.png"
     }
   ]
 }

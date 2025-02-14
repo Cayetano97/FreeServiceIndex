@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import servicesData from './db/services.json';
-import Header from './components/Header';
-import CategoryScroll from './components/CategoryScroll';
-import ServiceGrid from './components/ServiceGrid';
+import { useState } from "react";
+import servicesData from "./db/services.json";
+import Header from "./components/Header";
+import CategoryScroll from "./components/CategoryScroll";
+import ServiceGrid from "./components/ServiceGrid";
 
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   return (
     <div className="min-h-screen bg-background dark">
