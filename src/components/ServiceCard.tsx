@@ -1,5 +1,6 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 
 interface ServiceCardProps {
   title: string;
@@ -17,29 +18,47 @@ export default function ServiceCard({
   downloadLink,
 }: ServiceCardProps) {
   return (
-    <Card className="group hover:border-primary/50 transition-all duration-300 bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <CardHeader className="space-y-1">
+    <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-background/80 to-background backdrop-blur-sm border-opacity-50">
+      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      <CardHeader className="space-y-2">
         <div className="flex items-center justify-between">
-          <div className="bg-secondary/80 p-2 rounded-lg group-hover:scale-110 transition-transform duration-300">
-            {/* Envuelve la imagen con un enlace */}
-            <a href={downloadLink} target="_blank" rel="noopener noreferrer">
-              <img src={icon} alt={`${title} icon`} className="w-5 h-5" />
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            className="bg-secondary/10 p-3 rounded-xl backdrop-blur-sm"
+          >
+            <a href={downloadLink} target="_blank" rel="noopener noreferrer" className="block">
+              <img src={icon} alt={`${title} icon`} className="w-6 h-6 transform group-hover:rotate-3 transition-all duration-300" />
             </a>
-          </div>
-          <Badge variant="secondary" className="bg-secondary/80">
-            {category}
+          </motion.div>
+
+          <Badge
+            variant="secondary"
+            className="bg-secondary/10 hover:bg-secondary/20 transition-colors duration-300 flex items-center gap-2 px-3 py-1.5 rounded-full"
+          >
+            <span className="text-sm font-medium">{category}</span>
           </Badge>
         </div>
-        <h3 className="text-xl font-semibold tracking-tight pt-2 text-primary">
-          <a href={downloadLink} target="_blank" rel="noopener noreferrer">
+
+        <h3 className="text-xl font-semibold tracking-tight pt-2">
+          <a
+            href={downloadLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-primary to-primary bg-[length:0%_2px] bg-no-repeat bg-left-bottom group-hover:bg-[length:100%_2px] transition-all duration-500"
+          >
             {title}
           </a>
         </h3>
       </CardHeader>
-      <div className="absolute inset-x-0 bottom-0 h-px bg-border" />
+
       <CardContent>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {description}
+        </p>
       </CardContent>
+
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-border to-transparent" />
     </Card>
   );
 }
