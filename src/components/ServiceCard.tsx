@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { memo } from "react";
 
 interface ServiceCardProps {
   title: string;
@@ -10,7 +11,7 @@ interface ServiceCardProps {
   downloadLink: string;
 }
 
-export default function ServiceCard({
+const ServiceCard = memo(function ServiceCard({
   title,
   description,
   category,
@@ -24,11 +25,18 @@ export default function ServiceCard({
       <CardHeader className="space-y-2">
         <div className="flex items-center justify-between">
           <motion.div
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1, y: -2 }}
             className="bg-secondary/10 p-3 rounded-xl backdrop-blur-sm"
+            style={{ willChange: 'transform' }}
           >
             <a href={downloadLink} target="_blank" rel="noopener noreferrer" className="block">
-              <img src={icon} alt={`${title} icon`} className="w-6 h-6 transform group-hover:rotate-3 transition-all duration-300" />
+              <img
+                src={icon}
+                alt={`${title} icon`}
+                className="w-6 h-6 transition-all duration-300 group-hover:brightness-110"
+                loading="lazy"
+                decoding="async"
+              />
             </a>
           </motion.div>
 
@@ -61,4 +69,6 @@ export default function ServiceCard({
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-border to-transparent" />
     </Card>
   );
-}
+});
+
+export default ServiceCard;

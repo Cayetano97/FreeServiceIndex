@@ -29,7 +29,7 @@ export default function CategoryScroll({
           whileTap={{ scale: 0.95 }}
           onClick={() => onSelectCategory("Todos")}
           className={`
-            flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300
+            flex items-center gap-2 px-4 py-2 rounded-full
             ${selectedCategory === "Todos"
               ? "bg-primary text-primary-foreground shadow-lg"
               : "bg-secondary/10 hover:bg-secondary/20"
@@ -40,7 +40,7 @@ export default function CategoryScroll({
             animate={{ rotate: selectedCategory === "Todos" ? 360 : 0 }}
             transition={{ duration: 0.5 }}
           >
-            ☁︎
+            ☺️
           </motion.span>
           <span className="whitespace-nowrap">Todos</span>
         </motion.button>
@@ -52,7 +52,7 @@ export default function CategoryScroll({
             whileTap={{ scale: 0.95 }}
             onClick={() => onSelectCategory(category)}
             className={`
-              flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300
+              flex items-center gap-2 px-4 py-2 rounded-full
               ${selectedCategory === category
                 ? "bg-primary text-primary-foreground shadow-lg"
                 : "bg-secondary/10 hover:bg-secondary/20"

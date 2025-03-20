@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 import ServiceCard from "./ServiceCard";
 
 interface Service {
@@ -19,28 +20,35 @@ export default function ServiceGrid({
   services,
   selectedCategory,
 }: ServiceGridProps) {
-  const filteredServices =
-    selectedCategory === "Todos"
+  const filteredAndSortedServices = useMemo(() => {
+    const filtered = selectedCategory === "Todos"
       ? services
       : services.filter((service) => service.category === selectedCategory);
 
-  const sortedServices = filteredServices.sort((a, b) =>
-    a.title.localeCompare(b.title)
-  );
+    return filtered.sort((a, b) => a.title.localeCompare(b.title));
+  }, [services, selectedCategory]);
 
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
 
   const item = {
     hidden: { y: 20, opacity: 0 },
-    show: { y: 0, opacity: 1 }
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.2,
+        ease: "easeOut"
+      }
+    }
   };
 
   return (
@@ -49,13 +57,14 @@ export default function ServiceGrid({
       initial="hidden"
       animate="show"
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 mx-auto max-w-7xl"
+      style={{ willChange: 'transform' }}
     >
-      {sortedServices.map((service) => (
+      {filteredAndSortedServices.map((service) => (
         <motion.div
           key={service.id || service.title}
           variants={item}
-          transition={{ duration: 0.3 }}
           className="h-full"
+          style={{ willChange: 'transform' }}
         >
           <ServiceCard {...service} />
         </motion.div>
