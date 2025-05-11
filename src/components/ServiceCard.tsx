@@ -27,9 +27,14 @@ const ServiceCard = memo(function ServiceCard({
           <motion.div
             whileHover={{ scale: 1.1, y: -2 }}
             className="bg-secondary/10 p-3 rounded-xl backdrop-blur-sm"
-            style={{ willChange: 'transform' }}
+            style={{ willChange: "transform" }}
           >
-            <a href={downloadLink} target="_blank" rel="noopener noreferrer" className="block">
+            <a
+              href={downloadLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
               <img
                 src={icon}
                 alt={`${title} icon`}
@@ -48,15 +53,16 @@ const ServiceCard = memo(function ServiceCard({
           </Badge>
         </div>
 
-        <h3 className="text-xl font-semibold tracking-tight pt-2">
+        <h3 className="relative text-xl font-semibold tracking-tight pt-2">
           <a
             href={downloadLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-gradient-to-r from-primary to-primary bg-[length:0%_2px] bg-no-repeat bg-left-bottom group-hover:bg-[length:100%_2px] transition-all duration-500"
-          >
+            className="absolute inset-0 z-10 block"
+          />
+          <span className="relative z-20 pointer-events-none bg-gradient-to-r from-primary to-primary bg-[length:0%_2px] bg-no-repeat bg-left-bottom group-hover:bg-[length:100%_2px] transition-all duration-500">
             {title}
-          </a>
+          </span>
         </h3>
       </CardHeader>
 
