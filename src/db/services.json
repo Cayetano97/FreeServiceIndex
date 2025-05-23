@@ -114,6 +114,15 @@
       "downloadLink": "https://www.discografiascompletas.org/",
       "icon": "https://www.discografiascompletas.org/wp-content/uploads/2020/04/logodiscog-3.png",
       "platform": "PC"
+    },
+    {
+      "id": 13,
+      "title": "YouTube Music Desktop App",
+      "description": "Aplicación de escritorio para YouTube Music con bloqueo de anuncios.",
+      "category": "Música",
+      "downloadLink": "https://github.com/th-ch/youtube-music/releases",
+      "icon": "https://th-ch.github.io/youtube-music/img/youtube-music.svg",
+      "platform": "PC"
     }
   ]
 }
