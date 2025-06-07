@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Header from "./components/Header";
 import Guides from "./components/Guides";
@@ -7,16 +7,39 @@ import ServiceGrid from "./components/ServiceGrid";
 import { Analytics } from "@vercel/analytics/react";
 import servicesData from "./db/services.json";
 
-const Navigation = () => (
-  <div className="flex justify-center space-x-4 mt-4 pb-4">
-    <Link to="/" className="px-4 py-2 rounded-lg transition-colors bg-muted text-muted-foreground hover:bg-muted/80">
-      Enlaces
-    </Link>
-    <Link to="/guides" className="px-4 py-2 rounded-lg transition-colors bg-muted text-muted-foreground hover:bg-muted/80">
-      Guías
-    </Link>
-  </div>
-);
+const Navigation = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  return (
+    <div className="flex justify-center space-x-4 mt-4 pb-4">
+      <Link 
+        to="/" 
+        className={`
+          px-6 py-2.5 rounded-lg transition-all duration-200 font-medium
+          ${isHome 
+            ? 'bg-primary text-primary-foreground shadow-lg scale-105' 
+            : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }
+        `}
+      >
+        Servicios
+      </Link>
+      <Link 
+        to="/guides"
+        className={`
+          px-6 py-2.5 rounded-lg transition-all duration-200 font-medium
+          ${!isHome 
+            ? 'bg-primary text-primary-foreground shadow-lg scale-105' 
+            : 'bg-muted text-muted-foreground hover:bg-muted/80'
+          }
+        `}
+      >
+        Guías
+      </Link>
+    </div>
+  );
+};
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
