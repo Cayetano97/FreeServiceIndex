@@ -7,12 +7,6 @@ interface Guide {
   filename: string;
 }
 
-declare global {
-  interface ImportMeta {
-    glob: (pattern: string, options?: { as: 'raw' }) => Record<string, () => Promise<string>>;
-  }
-}
-
 const Guides = () => {
   const [guides, setGuides] = useState<Guide[]>([]);
   const [selectedGuide, setSelectedGuide] = useState<Guide | null>(null);
@@ -20,27 +14,17 @@ const Guides = () => {
   useEffect(() => {
     const loadGuides = async () => {
       try {
-        const guideModules = import.meta.glob('../db/guides/*.md', { as: 'raw' });
-        const loadedGuides: Guide[] = [];
-
-        for (const [path, loadContent] of Object.entries(guideModules)) {
-          const content = await loadContent();
-          const filename = path.split('/').pop() || '';
-          const title = filename.replace('.md', '').replace(/-/g, ' ');
-          
-          loadedGuides.push({
-            title: title.charAt(0).toUpperCase() + title.slice(1),
-            content,
-            filename
-          });
-        }
-
-        loadedGuides.sort((a, b) => a.title.localeCompare(b.title));
-        setGuides(loadedGuides);
-
-        if (loadedGuides.length > 0) {
-          setSelectedGuide(loadedGuides[0]);
-        }
+        // Por ahora, usaremos datos de ejemplo para probar
+        const exampleGuides: Guide[] = [
+          {
+            title: "Guía de Ejemplo",
+            content: "# Guía de Ejemplo\n\nEsta es una guía de ejemplo para probar la funcionalidad.",
+            filename: "ejemplo.md"
+          }
+        ];
+        
+        setGuides(exampleGuides);
+        setSelectedGuide(exampleGuides[0]);
       } catch (error) {
         console.error('Error al cargar las guías:', error);
       }
