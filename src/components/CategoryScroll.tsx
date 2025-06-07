@@ -8,12 +8,45 @@ interface CategoryScrollProps {
   defaultCategory?: string;
 }
 
-export default function CategoryScroll({
+const CategoryButton = ({ 
+  category, 
+  isSelected, 
+  onClick 
+}: { 
+  category: string; 
+  isSelected: boolean; 
+  onClick: () => void;
+}) => (
+  <motion.button
+    whileHover={{ scale: category === "Todos" ? 1 : 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    onClick={onClick}
+    className={`
+      flex items-center gap-2 px-4 py-2 rounded-full
+      ${isSelected
+        ? "bg-primary text-primary-foreground shadow-lg"
+        : "bg-secondary/10 hover:bg-secondary/20"
+      }
+    `}
+  >
+    {category === "Todos" && (
+      <motion.span
+        animate={{ rotate: isSelected ? 360 : 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        ☺️
+      </motion.span>
+    )}
+    <span className="whitespace-nowrap">{category}</span>
+  </motion.button>
+);
+
+const CategoryScroll = ({
   categories,
   selectedCategory = "Todos",
   onSelectCategory,
   defaultCategory = "Todos"
-}: CategoryScrollProps) {
+}: CategoryScrollProps) => {
   useEffect(() => {
     onSelectCategory(defaultCategory);
   }, []);
@@ -25,44 +58,22 @@ export default function CategoryScroll({
       className="w-full overflow-x-auto py-4 scrollbar-hide"
     >
       <div className="flex space-x-4 px-4 min-w-max mx-auto max-w-7xl">
-        <motion.button
-          whileTap={{ scale: 0.95 }}
+        <CategoryButton
+          category="Todos"
+          isSelected={selectedCategory === "Todos"}
           onClick={() => onSelectCategory("Todos")}
-          className={`
-            flex items-center gap-2 px-4 py-2 rounded-full
-            ${selectedCategory === "Todos"
-              ? "bg-primary text-primary-foreground shadow-lg"
-              : "bg-secondary/10 hover:bg-secondary/20"
-            }
-          `}
-        >
-          <motion.span
-            animate={{ rotate: selectedCategory === "Todos" ? 360 : 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            ☺️
-          </motion.span>
-          <span className="whitespace-nowrap">Todos</span>
-        </motion.button>
-
-        {categories.map((category) => (
-          <motion.button
+        />
+        {categories.map(category => (
+          <CategoryButton
             key={category}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            category={category}
+            isSelected={selectedCategory === category}
             onClick={() => onSelectCategory(category)}
-            className={`
-              flex items-center gap-2 px-4 py-2 rounded-full
-              ${selectedCategory === category
-                ? "bg-primary text-primary-foreground shadow-lg"
-                : "bg-secondary/10 hover:bg-secondary/20"
-              }
-            `}
-          >
-            <span className="whitespace-nowrap">{category}</span>
-          </motion.button>
+          />
         ))}
       </div>
     </motion.div>
   );
-}
+};
+
+export default CategoryScroll;
