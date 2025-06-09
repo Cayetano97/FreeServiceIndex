@@ -27,4 +27,5 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion'],
   },
+  assetsInclude: ['**/*.md'],
 });

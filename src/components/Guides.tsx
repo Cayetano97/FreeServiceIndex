@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Guide {
   title: string;
@@ -38,8 +39,10 @@ const GuideList = ({ guides, selectedGuide, onSelectGuide }: {
 const GuideContent = ({ guide }: { guide: Guide | null }) => (
   <div className="bg-card p-4 rounded-lg border min-h-[calc(100vh-12rem)]">
     {guide ? (
-      <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground">
-        <ReactMarkdown>{guide.content}</ReactMarkdown>
+      <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground prose-img:rounded-lg prose-img:shadow-lg">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {guide.content}
+        </ReactMarkdown>
       </div>
     ) : (
       <div className="text-center text-muted-foreground">
@@ -56,13 +59,28 @@ const Guides = () => {
   useEffect(() => {
     const loadGuides = async () => {
       try {
-        const exampleGuides: Guide[] = [{
-          title: "Guía de Ejemplo",
-          content: "# Guía de Ejemplo\n\nEsta es una guía de ejemplo para probar la funcionalidad.",
-          filename: "ejemplo.md"
-        }];
-        setGuides(exampleGuides);
-        setSelectedGuide(exampleGuides[0]);
+        const guidesContext = import.meta.glob('/src/db/guides/*.md', { 
+          query: '?raw',
+          import: 'default'
+        });
+        const loadedGuides: Guide[] = [];
+
+        for (const path in guidesContext) {
+          const content = await guidesContext[path]();
+          const filename = path.split('/').pop() || '';
+          const title = filename.replace('.md', '');
+          
+          loadedGuides.push({
+            title,
+            content,
+            filename
+          });
+        }
+
+        setGuides(loadedGuides);
+        if (loadedGuides.length > 0) {
+          setSelectedGuide(loadedGuides[0]);
+        }
       } catch (error) {
         console.error('Error al cargar las guías:', error);
       }

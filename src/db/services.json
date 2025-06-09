@@ -4,7 +4,8 @@
     "Lectura",
     "Música",
     "Streaming",
-    "PC"
+    "PC", 
+    "Mac"
   ],
   "services": [
     {
@@ -64,7 +65,7 @@
     {
       "id": 7,
       "title": "SmartTube",
-      "description": "Aplicación de YouTube sin anuncios para SmarTV.",
+      "description": "Aplicación de YouTube sin anuncios para SmartTV.",
       "category": "Streaming",
       "downloadLink": "https://smarttubeapp.github.io/",
       "icon": "https://github.com/yuliskov/SmartTube/raw/master/smarttubetv/src/ststable/res/mipmap-nodpi/app_icon.png",
@@ -127,7 +128,7 @@
       "id": 14,
       "title": "SpotX-Bash",
       "description": "Descarga una versión parcheada de Spotify y escucha sin limites [Mac]",
-      "category": "Música",
+      "category": "Mac",
       "downloadLink": "https://github.com/SpotX-Official/SpotX-Bash",
       "icon": "https://avatars.githubusercontent.com/u/146193339?s=48&v=4",
       "platform": "Mac"

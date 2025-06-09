@@ -10,5 +10,11 @@ Aquí puedes encontrar información detallada.
 - Punto 2
 - Punto 3
 
+<!-- ![Imagen de ejemplo](https://i.ibb.co/vvMqg1Gv/image.png) -->
+
+
 ## Sección 2
 Más contenido y ejemplos...
+
+
+
