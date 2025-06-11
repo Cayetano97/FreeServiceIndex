@@ -66,7 +66,7 @@ const Guides = () => {
         const loadedGuides: Guide[] = [];
 
         for (const path in guidesContext) {
-          const content = await guidesContext[path]();
+          const content = await guidesContext[path]() as string;
           const filename = path.split('/').pop() || '';
           const title = filename.replace('.md', '');
           
