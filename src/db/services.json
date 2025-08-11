@@ -132,6 +132,16 @@
       "downloadLink": "https://github.com/SpotX-Official/SpotX-Bash",
       "icon": "https://avatars.githubusercontent.com/u/146193339?s=48&v=4",
       "platform": "Mac"
+    }, 
+    {
+      "id": 15,
+      "title": "Openlib",
+      "description": "Aplicación para descargar libros desde (Anna’s Archive)",
+      "category": "Lectura",
+      "downloadLink": "https://github.com/dstark5/Openlib/releases",
+      "icon": "https://raw.githubusercontent.com/dstark5/Openlib/main/assets/icons/appIcon.png",
+      "platform": "Android"
     }
+
   ]
 }
