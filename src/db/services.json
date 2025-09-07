@@ -1,12 +1,5 @@
 {
-  "categories": [
-    "Addons Kodi",
-    "Lectura",
-    "Música",
-    "Streaming",
-    "PC", 
-    "Mac"
-  ],
+  "categories": ["Addons Kodi", "Lectura", "Música", "Streaming", "PC", "Mac"],
   "services": [
     {
       "id": 1,
@@ -124,7 +117,8 @@
       "downloadLink": "https://github.com/th-ch/youtube-music/releases",
       "icon": "https://th-ch.github.io/youtube-music/img/youtube-music.svg",
       "platform": "PC"
-    }, {
+    },
+    {
       "id": 14,
       "title": "SpotX-Bash",
       "description": "Descarga una versión parcheada de Spotify y escucha sin limites [Mac]",
@@ -132,7 +126,7 @@
       "downloadLink": "https://github.com/SpotX-Official/SpotX-Bash",
       "icon": "https://avatars.githubusercontent.com/u/146193339?s=48&v=4",
       "platform": "Mac"
-    }, 
+    },
     {
       "id": 15,
       "title": "Openlib",
@@ -141,7 +135,15 @@
       "downloadLink": "https://github.com/dstark5/Openlib/releases",
       "icon": "https://raw.githubusercontent.com/dstark5/Openlib/main/assets/icons/appIcon.png",
       "platform": "Android"
+    },
+    {
+      "id": 16,
+      "title": "Disk Prices",
+      "description": "Compara precios de discos duros y unidades SSD",
+      "category": "PC",
+      "downloadLink": "https://diskprices.com/?locale=es",
+      "icon": "https://diskprices.com/static/favicon-32x32.png",
+      "platform": "PC"
     }
-
   ]
 }
