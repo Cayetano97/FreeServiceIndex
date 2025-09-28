@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import Particles from "react-particles";
 import { loadSlim } from "tsparticles-slim";
-import type { Container, Engine } from "tsparticles-engine";
+import type { Engine } from "tsparticles-engine";
 
 const ParticlesBackground = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -49,7 +49,7 @@ const ParticlesBackground = () => {
             color: "#ffffff",
             distance: 150,
             enable: true,
-            opacity: 0.3,
+            opacity: 0.15,
             width: 1,
           },
           move: {
@@ -70,7 +70,7 @@ const ParticlesBackground = () => {
             value: 80,
           },
           opacity: {
-            value: 0.5,
+            value: 0.2,
           },
           shape: {
             type: "circle",
