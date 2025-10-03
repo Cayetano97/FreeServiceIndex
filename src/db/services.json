@@ -4,8 +4,6 @@
     "Lectura",
     "Música",
     "Streaming",
-    "PC",
-    "Mac",
     "Herramientas"
   ],
   "services": [
@@ -121,7 +119,7 @@
       "id": 14,
       "title": "SpotX-Bash",
       "description": "Descarga una versión parcheada de Spotify",
-      "category": "Mac",
+      "category": "Música",
       "downloadLink": "https://github.com/SpotX-Official/SpotX-Bash",
       "icon": "https://avatars.githubusercontent.com/u/146193339?s=48&v=4",
       "platform": "Mac"
@@ -139,7 +137,7 @@
       "id": 16,
       "title": "Disk Prices",
       "description": "Compara precios de discos duros y unidades SSD",
-      "category": "PC",
+      "category": "Herramientas",
       "downloadLink": "https://diskprices.com/?locale=es",
       "icon": "https://diskprices.com/static/favicon-32x32.png",
       "platform": "Universal"
