@@ -1,4 +1,0 @@
-packages:
-  - '.'                # tu paquete principal en la raíz
-ignoredBuiltDependencies:
-  - esbuild

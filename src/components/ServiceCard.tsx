@@ -9,6 +9,7 @@ interface ServiceCardProps {
   category: string;
   icon: string;
   downloadLink: string;
+  platform?: string;
 }
 
 const ServiceCard = memo(function ServiceCard({
@@ -17,6 +18,7 @@ const ServiceCard = memo(function ServiceCard({
   category,
   icon,
   downloadLink,
+  platform,
 }: ServiceCardProps) {
   return (
     <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-background/80 to-background backdrop-blur-sm border-opacity-50">
@@ -26,7 +28,7 @@ const ServiceCard = memo(function ServiceCard({
         <div className="flex items-center justify-between">
           <motion.div
             whileHover={{ scale: 1.1, y: -2 }}
-            className="bg-secondary/10 p-3 rounded-xl backdrop-blur-sm"
+            className=""
             style={{ willChange: "transform" }}
           >
             <a
@@ -45,12 +47,23 @@ const ServiceCard = memo(function ServiceCard({
             </a>
           </motion.div>
 
-          <Badge
-            variant="secondary"
-            className="bg-secondary/10 hover:bg-secondary/20 transition-colors duration-300 flex items-center gap-2 px-3 py-1.5 rounded-full"
-          >
-            <span className="text-sm font-medium">{category}</span>
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge
+              variant="secondary"
+              className="bg-secondary/10 hover:bg-secondary/20 transition-colors duration-300 flex items-center gap-2 px-3 py-1.5 rounded-full"
+            >
+              <span className="text-sm font-medium">{category}</span>
+            </Badge>
+            {platform && (
+              <Badge
+                variant="outline"
+                className="border-primary/30 text-foreground/80 flex items-center gap-2 px-3 py-1.5 rounded-full"
+                title="Plataforma"
+              >
+                <span className="text-xs font-medium">{platform}</span>
+              </Badge>
+            )}
+          </div>
         </div>
 
         <h3 className="relative text-xl font-semibold tracking-tight pt-2">

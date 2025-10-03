@@ -9,11 +9,13 @@ interface Service {
   category: string;
   icon: string;
   downloadLink: string;
+  platform?: string;
 }
 
 interface ServiceGridProps {
   services: Service[];
   selectedCategory: string;
+  selectedPlatform?: string;
 }
 
 const containerVariants = {
@@ -22,9 +24,9 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1
-    }
-  }
+      delayChildren: 0.1,
+    },
+  },
 };
 
 const itemVariants = {
@@ -34,18 +36,27 @@ const itemVariants = {
     opacity: 1,
     transition: {
       duration: 0.2,
-      ease: "easeOut"
-    }
-  }
+      ease: "easeOut",
+    },
+  },
 };
 
-const ServiceGrid = ({ services, selectedCategory }: ServiceGridProps) => {
+const ServiceGrid = ({
+  services,
+  selectedCategory,
+  selectedPlatform = "Todas",
+}: ServiceGridProps) => {
   const filteredAndSortedServices = useMemo(() => {
-    const filtered = selectedCategory === "Todos"
-      ? services
-      : services.filter(service => service.category === selectedCategory);
-    return filtered.sort((a, b) => a.title.localeCompare(b.title));
-  }, [services, selectedCategory]);
+    const byCategory =
+      selectedCategory === "Todos"
+        ? services
+        : services.filter((service) => service.category === selectedCategory);
+    const byPlatform =
+      selectedPlatform === "Todas"
+        ? byCategory
+        : byCategory.filter((service) => service.platform === selectedPlatform);
+    return byPlatform.sort((a, b) => a.title.localeCompare(b.title));
+  }, [services, selectedCategory, selectedPlatform]);
 
   return (
     <motion.div
@@ -53,14 +64,14 @@ const ServiceGrid = ({ services, selectedCategory }: ServiceGridProps) => {
       initial="hidden"
       animate="show"
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 mx-auto max-w-7xl"
-      style={{ willChange: 'transform' }}
+      style={{ willChange: "transform" }}
     >
-      {filteredAndSortedServices.map(service => (
+      {filteredAndSortedServices.map((service) => (
         <motion.div
           key={service.id || service.title}
           variants={itemVariants}
           className="h-full"
-          style={{ willChange: 'transform' }}
+          style={{ willChange: "transform" }}
         >
           <ServiceCard {...service} />
         </motion.div>

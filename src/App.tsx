@@ -5,12 +5,12 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Header from "./components/Header";
 import Guides from "./components/Guides";
 import CategoryScroll from "./components/CategoryScroll";
+import PlatformScroll from "./components/PlatformScroll";
 import ServiceGrid from "./components/ServiceGrid";
-import ParticlesBackground from "./components/ParticlesBackground";
 import { Analytics } from "@vercel/analytics/react";
 import servicesData from "./db/services.json";
 
@@ -52,16 +52,37 @@ const Navigation = () => {
 
 const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedPlatform, setSelectedPlatform] = useState("Universal");
+
+  const platforms = useMemo(() => {
+    const set = new Set<string>();
+    servicesData.services.forEach((s) => {
+      if (s.platform) set.add(s.platform);
+    });
+    // Orden alfabético simple
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, []);
+
+  const categories = useMemo(() => {
+    return servicesData.categories;
+  }, []);
+
   return (
     <>
       <CategoryScroll
-        categories={servicesData.categories}
+        categories={categories}
         selectedCategory={selectedCategory}
         onSelectCategory={setSelectedCategory}
+      />
+      <PlatformScroll
+        platforms={platforms}
+        selectedPlatform={selectedPlatform}
+        onSelectPlatform={setSelectedPlatform}
       />
       <ServiceGrid
         services={servicesData.services}
         selectedCategory={selectedCategory}
+        selectedPlatform={selectedPlatform}
       />
     </>
   );
@@ -69,9 +90,8 @@ const Home = () => {
 
 const App = () => (
   <Router>
-    <div className="min-h-screen bg-background dark relative">
-      <ParticlesBackground />
-      <div className="fixed top-0 left-0 right-0 z-50 bg-background/30 backdrop-blur-md">
+    <div className="min-h-screen bg-black relative">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black">
         <Header />
         <Navigation />
       </div>
