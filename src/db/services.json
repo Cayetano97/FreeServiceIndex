@@ -141,6 +141,15 @@
       "downloadLink": "https://diskprices.com/?locale=es",
       "icon": "https://diskprices.com/static/favicon-32x32.png",
       "platform": "Universal"
+    },
+    {
+      "id": 17,
+      "title": "LibGen Sci-Hub Rebellibrarian Bot",
+      "description": "Descarga libros/artículos científicos",
+      "category": "Herramientas",
+      "downloadLink": "https://t.me/libgen_scihub_rebellibrarian_bot",
+      "icon": "https://sci-hub.se/pictures/sci-hub%20red.svg",
+      "platform": "Universal"
     }
   ]
 }
