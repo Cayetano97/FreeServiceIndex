@@ -4,7 +4,8 @@
     "Lectura",
     "Música",
     "Streaming",
-    "Herramientas"
+    "Herramientas",
+    "Juegos"
   ],
   "services": [
     {
@@ -71,7 +72,7 @@
       "platform": "Smart TV"
     },
     {
-      "id": 9,
+      "id": 8,
       "title": "Anilab",
       "description": "Aplicación Android / TV para ver anime.",
       "category": "Streaming",
@@ -80,7 +81,7 @@
       "platform": "Android"
     },
     {
-      "id": 10,
+      "id": 9,
       "title": "Microsoft Activation Scripts (MAS)",
       "description": "Activa Windows Y Office gratis",
       "category": "Herramientas",
@@ -89,7 +90,7 @@
       "platform": "PC"
     },
     {
-      "id": 11,
+      "id": 10,
       "title": "Biblioteca Secreta",
       "description": "Da acceso a un bot de Telegram que te permite descargar libros.",
       "category": "Lectura",
@@ -98,7 +99,7 @@
       "platform": "Universal"
     },
     {
-      "id": 12,
+      "id": 11,
       "title": "Discografias completas",
       "description": "Descarga discografías completas de artistas en 320kbps",
       "category": "Música",
@@ -107,7 +108,7 @@
       "platform": "Universal"
     },
     {
-      "id": 13,
+      "id": 12,
       "title": "YouTube Music Desktop App",
       "description": "Aplicación de escritorio para YouTube Music con bloqueo de anuncios.",
       "category": "Música",
@@ -116,7 +117,7 @@
       "platform": "PC"
     },
     {
-      "id": 14,
+      "id": 13,
       "title": "SpotX-Bash",
       "description": "Descarga una versión parcheada de Spotify",
       "category": "Música",
@@ -125,7 +126,7 @@
       "platform": "Mac"
     },
     {
-      "id": 15,
+      "id": 14,
       "title": "Openlib",
       "description": "Aplicación para descargar libros desde Anna’s Archive",
       "category": "Lectura",
@@ -134,7 +135,7 @@
       "platform": "Android"
     },
     {
-      "id": 16,
+      "id": 15,
       "title": "Disk Prices",
       "description": "Compara precios de discos duros y unidades SSD",
       "category": "Herramientas",
@@ -143,12 +144,21 @@
       "platform": "Universal"
     },
     {
-      "id": 17,
+      "id": 16,
       "title": "LibGen Sci-Hub Rebellibrarian Bot",
       "description": "Descarga libros/artículos científicos",
       "category": "Herramientas",
       "downloadLink": "https://t.me/libgen_scihub_rebellibrarian_bot",
       "icon": "https://sci-hub.se/pictures/sci-hub%20red.svg",
+      "platform": "Universal"
+    },
+    {
+      "id": 17,
+      "title": "nswtl",
+      "description": "Lista de bots de telegram para descargar juegos de cualquier plataforma",
+      "category": "Juegos",
+      "downloadLink": "https://nswtl.info/",
+      "icon": "https://nswtl.info/favicon.ico",
       "platform": "Universal"
     }
   ]
