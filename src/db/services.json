@@ -160,6 +160,15 @@
       "downloadLink": "https://nswtl.info/",
       "icon": "https://nswtl.info/favicon.ico",
       "platform": "Universal"
+    },
+    {
+      "id": 18,
+      "title": "Cobalt",
+      "description": "Descarga video/audio de cualquier web",
+      "category": "Herramientas",
+      "downloadLink": "https://cobalt.tools/",
+      "icon": "https://cobalt.tools/favicon.png",
+      "platform": "Universal"
     }
   ]
 }
