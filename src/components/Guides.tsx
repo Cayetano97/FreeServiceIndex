@@ -39,7 +39,7 @@ const GuideList = ({ guides, selectedGuide, onSelectGuide }: {
 const GuideContent = ({ guide }: { guide: Guide | null }) => (
   <div className="bg-card p-4 rounded-lg border min-h-[calc(100vh-12rem)]">
     {guide ? (
-      <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground prose-img:rounded-lg prose-img:shadow-lg">
+      <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground prose-li:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-img:rounded-lg prose-img:shadow-lg">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {guide.content}
         </ReactMarkdown>
