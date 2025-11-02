@@ -1,12 +1,50 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { Loader2 } from 'lucide-react';
 
 interface Guide {
   title: string;
   content: string;
   filename: string;
 }
+
+interface ImageWithLoaderProps {
+  src?: string;
+  alt?: string;
+}
+
+const ImageWithLoader = ({ src, alt }: ImageWithLoaderProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className="relative w-full flex justify-center items-center my-4">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-muted/50 rounded-lg">
+          <Loader2 className="w-8 h-8 text-primary animate-spin" />
+        </div>
+      )}
+      {hasError ? (
+        <div className="w-full h-48 flex items-center justify-center bg-muted rounded-lg text-muted-foreground">
+          Error al cargar la imagen
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          className="rounded-lg shadow-lg max-w-full h-auto"
+          onLoad={() => setIsLoading(false)}
+          onError={() => {
+            setIsLoading(false);
+            setHasError(true);
+          }}
+          style={{ display: isLoading ? 'none' : 'block' }}
+        />
+      )}
+    </div>
+  );
+};
 
 const GuideList = ({ guides, selectedGuide, onSelectGuide }: { 
   guides: Guide[]; 
@@ -39,8 +77,13 @@ const GuideList = ({ guides, selectedGuide, onSelectGuide }: {
 const GuideContent = ({ guide }: { guide: Guide | null }) => (
   <div className="bg-card p-4 rounded-lg border min-h-[calc(100vh-12rem)]">
     {guide ? (
-      <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground prose-li:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-img:rounded-lg prose-img:shadow-lg">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+      <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground prose-li:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-a:text-blue-400 prose-a:hover:text-blue-300 prose-a:underline prose-img:rounded-lg prose-img:shadow-lg">
+        <ReactMarkdown 
+          remarkPlugins={[remarkGfm]}
+          components={{
+            img: ({ src, alt }) => <ImageWithLoader src={src} alt={alt} />
+          }}
+        >
           {guide.content}
         </ReactMarkdown>
       </div>
