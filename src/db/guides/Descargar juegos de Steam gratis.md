@@ -17,9 +17,9 @@
 
 1️⃣ **Ve a la página** [steamdb.info](https://steamdb.info/) y busca el juego.
 
-![(ㆆ _ ㆆ)](https://i.ibb.co/Mb6hVgH/IMG-01.png)
-
 2️⃣ **Copia el App ID**.
+
+![(ㆆ _ ㆆ)](https://i.ibb.co/Mb6hVgH/IMG-01.png)
 
 3️⃣ **Pega el App ID** en [luagen.pages.dev](https://luagen.pages.dev/) y haz clic en **Generate**.
 
