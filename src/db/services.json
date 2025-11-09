@@ -87,12 +87,12 @@
       "category": "Herramientas",
       "downloadLink": "https://massgrave.dev/",
       "icon": "https://massgrave.dev/img/logo.png",
-      "platform": "PC"
+      "platform": "Universal"
     },
     {
       "id": 10,
       "title": "Biblioteca Secreta",
-      "description": "Da acceso a un bot de Telegram que te permite descargar libros.",
+      "description": "Bot de Telegram que te permite descargar libros.",
       "category": "Lectura",
       "downloadLink": "http://bibliotecasecreta.nl/",
       "icon": "https://botostore.com/netcat_files/6/7/153560_1622824928.jpg",
@@ -168,6 +168,15 @@
       "category": "Herramientas",
       "downloadLink": "https://cobalt.tools/",
       "icon": "https://cobalt.tools/favicon.png",
+      "platform": "Universal"
+    },
+    {
+      "id": 19,
+      "title": "Librolandia",
+      "description": "Descarga libros y revistas gratis",
+      "category": "Lectura",
+      "downloadLink": "https://ww2.librolandia.net/",
+      "icon": "https://ww2.librolandia.net/wp-content/uploads/2022/08/librolandiaicono-300x300.png",
       "platform": "Universal"
     }
   ]
