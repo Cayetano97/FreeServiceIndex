@@ -1,7 +1,10 @@
+
+
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion } from "framer-motion";
+
 import { memo } from "react";
+import { ExternalLink } from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
@@ -21,72 +24,50 @@ const ServiceCard = memo(function ServiceCard({
   platform,
 }: ServiceCardProps) {
   return (
-    <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 bg-gradient-to-br from-background/80 to-background backdrop-blur-sm border-opacity-50">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-      <CardHeader className="space-y-2">
-        <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.1, y: -2 }}
-            className=""
-            style={{ willChange: "transform" }}
-          >
-            <a
-              href={downloadLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
+    <a
+      href={downloadLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block h-full group"
+    >
+      <Card className="h-full bg-card border-border/50 hover:border-foreground/20 transition-all duration-300 hover:shadow-sm relative overflow-hidden">
+        <CardHeader className="space-y-4">
+          <div className="flex items-start justify-between">
+            <div className="p-2 bg-secondary/50 rounded-lg group-hover:bg-secondary transition-colors">
               <img
                 src={icon}
                 alt={`${title} icon`}
-                className="w-6 h-6 transition-all duration-300 group-hover:brightness-110"
+                className="w-6 h-6"
                 loading="lazy"
-                decoding="async"
               />
-            </a>
-          </motion.div>
-
-          <div className="flex items-center gap-2">
-            <Badge
-              variant="secondary"
-              className="bg-secondary/10 hover:bg-secondary/20 transition-colors duration-300 flex items-center gap-2 px-3 py-1.5 rounded-full"
-            >
-              <span className="text-sm font-medium">{category}</span>
-            </Badge>
-            {platform && (
-              <Badge
-                variant="outline"
-                className="border-primary/30 text-foreground/80 flex items-center gap-2 px-3 py-1.5 rounded-full"
-                title="Plataforma"
-              >
-                <span className="text-xs font-medium">{platform}</span>
-              </Badge>
-            )}
+            </div>
+            <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
-        </div>
 
-        <h3 className="relative text-xl font-semibold tracking-tight pt-2">
-          <a
-            href={downloadLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute inset-0 z-10 block"
-          />
-          <span className="relative z-20 pointer-events-none bg-gradient-to-r from-primary to-primary bg-[length:0%_2px] bg-no-repeat bg-left-bottom group-hover:bg-[length:100%_2px] transition-all duration-500">
-            {title}
-          </span>
-        </h3>
-      </CardHeader>
+          <div className="space-y-1">
+            <h3 className="font-semibold text-lg tracking-tight text-foreground group-hover:text-primary transition-colors">
+              {title}
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="secondary" className="text-xs font-normal bg-secondary text-secondary-foreground hover:bg-secondary/80">
+                {category}
+              </Badge>
+              {platform && (
+                <Badge variant="outline" className="text-xs font-normal border-border text-muted-foreground">
+                  {platform}
+                </Badge>
+              )}
+            </div>
+          </div>
+        </CardHeader>
 
-      <CardContent>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {description}
-        </p>
-      </CardContent>
-
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-border to-transparent" />
-    </Card>
+        <CardContent>
+          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+            {description}
+          </p>
+        </CardContent>
+      </Card>
+    </a>
   );
 });
 

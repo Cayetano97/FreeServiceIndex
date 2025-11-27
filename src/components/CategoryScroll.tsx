@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+
 import { useEffect } from "react";
 
 interface CategoryScrollProps {
@@ -17,25 +17,19 @@ const CategoryButton = ({
   isSelected: boolean;
   onClick: () => void;
 }) => (
-  <motion.button
-    whileHover={{ scale: category === "Todos" ? 1 : 1.05 }}
-    whileTap={{ scale: 0.95 }}
+  <button
     onClick={onClick}
     className={`
-      flex items-center gap-2 px-4 py-2 rounded-full
+      px-3 py-1.5 text-sm rounded-md transition-all duration-200 border
       ${
         isSelected
-          ? "bg-primary text-primary-foreground shadow-lg"
-          : "bg-secondary/10 hover:bg-secondary/20"
+          ? "bg-foreground text-background border-foreground font-medium"
+          : "bg-transparent text-muted-foreground border-transparent hover:border-border hover:text-foreground"
       }
     `}
   >
-    {category === "Todos" ? (
-      <span>🗂️</span>
-    ) : (
-      <span className="whitespace-nowrap">{category}</span>
-    )}
-  </motion.button>
+    {category}
+  </button>
 );
 
 const CategoryScroll = ({
@@ -49,32 +43,26 @@ const CategoryScroll = ({
   }, []);
 
   return (
-    <>
-      <div className="px-4 mx-auto max-w-7xl text-xs uppercase tracking-wider text-muted-foreground/80 select-none">
+    <div className="space-y-2">
+      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
         Categorías
       </div>
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        className="w-full overflow-x-auto py-3 scrollbar-hide"
-      >
-        <div className="flex space-x-4 px-4 min-w-max mx-auto max-w-7xl">
+      <div className="flex flex-wrap gap-2">
+        <CategoryButton
+          category="Todos"
+          isSelected={selectedCategory === "Todos"}
+          onClick={() => onSelectCategory("Todos")}
+        />
+        {categories.map((category) => (
           <CategoryButton
-            category="Todos"
-            isSelected={selectedCategory === "Todos"}
-            onClick={() => onSelectCategory("Todos")}
+            key={category}
+            category={category}
+            isSelected={selectedCategory === category}
+            onClick={() => onSelectCategory(category)}
           />
-          {categories.map((category) => (
-            <CategoryButton
-              key={category}
-              category={category}
-              isSelected={selectedCategory === category}
-              onClick={() => onSelectCategory(category)}
-            />
-          ))}
-        </div>
-      </motion.div>
-    </>
+        ))}
+      </div>
+    </div>
   );
 };
 

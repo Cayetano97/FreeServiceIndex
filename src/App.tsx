@@ -19,15 +19,15 @@ const Navigation = () => {
   const isHome = location.pathname === "/";
 
   return (
-    <div className="flex justify-center space-x-4 mt-4 pb-4">
+    <nav className="flex space-x-6">
       <Link
         to="/"
         className={`
-          px-6 py-2.5 rounded-lg transition-all duration-200 font-medium
+          py-4 text-sm font-medium transition-colors border-b-2
           ${
             isHome
-              ? "bg-primary text-primary-foreground shadow-lg scale-105"
-              : "bg-muted text-muted-foreground hover:bg-muted/80"
+              ? "border-foreground text-foreground"
+              : "border-transparent text-muted-foreground hover:text-foreground"
           }
         `}
       >
@@ -36,17 +36,17 @@ const Navigation = () => {
       <Link
         to="/guides"
         className={`
-          px-6 py-2.5 rounded-lg transition-all duration-200 font-medium
+          py-4 text-sm font-medium transition-colors border-b-2
           ${
             !isHome
-              ? "bg-primary text-primary-foreground shadow-lg scale-105"
-              : "bg-muted text-muted-foreground hover:bg-muted/80"
+              ? "border-foreground text-foreground"
+              : "border-transparent text-muted-foreground hover:text-foreground"
           }
         `}
       >
         Guías
       </Link>
-    </div>
+    </nav>
   );
 };
 
@@ -59,7 +59,6 @@ const Home = () => {
     servicesData.services.forEach((s) => {
       if (s.platform) set.add(s.platform);
     });
-    // Orden alfabético simple
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, []);
 
@@ -68,34 +67,38 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <CategoryScroll
-        categories={categories}
-        selectedCategory={selectedCategory}
-        onSelectCategory={setSelectedCategory}
-      />
-      <PlatformScroll
-        platforms={platforms}
-        selectedPlatform={selectedPlatform}
-        onSelectPlatform={setSelectedPlatform}
-      />
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <CategoryScroll
+          categories={categories}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
+        <PlatformScroll
+          platforms={platforms}
+          selectedPlatform={selectedPlatform}
+          onSelectPlatform={setSelectedPlatform}
+        />
+      </div>
       <ServiceGrid
         services={servicesData.services}
         selectedCategory={selectedCategory}
         selectedPlatform={selectedPlatform}
       />
-    </>
+    </div>
   );
 };
 
 const App = () => (
   <Router>
-    <div className="min-h-screen bg-black relative">
-      <div className="fixed top-0 left-0 right-0 z-50 bg-black">
-        <Header />
-        <Navigation />
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <Header />
+      <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Navigation />
+        </div>
       </div>
-      <main className="mt-40 relative z-10">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/guides" element={<Guides />} />

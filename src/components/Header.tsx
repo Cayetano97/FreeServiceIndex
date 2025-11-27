@@ -1,11 +1,13 @@
-import { Zap } from 'lucide-react';
+import { Zap } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="w-full py-6 px-4 sm:px-6 lg:px-8 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-7xl mx-auto flex items-center gap-2">
-        <Zap className="w-8 h-8 text-primary" />
-        <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary/50">
+    <header className="w-full py-4 border-b border-border bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2">
+        <div className="p-1.5 bg-foreground rounded-md">
+          <Zap className="w-4 h-4 text-background fill-background" />
+        </div>
+        <h1 className="text-xl font-bold tracking-tight text-foreground">
           FreeServiceIndex
         </h1>
       </div>

@@ -63,7 +63,7 @@ const ServiceGrid = ({
       variants={containerVariants}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6 mx-auto max-w-7xl"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mx-auto max-w-7xl"
       style={{ willChange: "transform" }}
     >
       {filteredAndSortedServices.map((service) => (
