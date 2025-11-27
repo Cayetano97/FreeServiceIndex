@@ -178,6 +178,15 @@
       "downloadLink": "https://ww2.librolandia.net/",
       "icon": "https://ww2.librolandia.net/wp-content/uploads/2022/08/librolandiaicono-300x300.png",
       "platform": "Universal"
+    },
+    {
+      "id": 20,
+      "title": "eXoWin9x",
+      "description": "Pack de juegos de Windows 95/98 emulados y preconfigurados",
+      "category": "Juegos",
+      "downloadLink": "https://www.retro-exo.com/win9x_M.html",
+      "icon": "https://www.retro-exo.com/favicon.ico",
+      "platform": "PC"
     }
   ]
 }
