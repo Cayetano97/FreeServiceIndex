@@ -26,7 +26,7 @@
 ![(ㆆ _ ㆆ)](https://i.ibb.co/27k0G59X/IMG-02.png)
 
 - Se descargará un archivo **.zip** con el nombre del App ID del juego.
-- Dentro habrá dos archivos:
+- Dentro habrá mínimo dos archivos (podría haber más):
   - `App ID.lua`
   - `APP ID_xxx.manifest`
 
