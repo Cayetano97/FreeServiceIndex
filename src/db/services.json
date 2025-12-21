@@ -187,6 +187,15 @@
       "downloadLink": "https://www.retro-exo.com/win9x_M.html",
       "icon": "https://www.retro-exo.com/favicon.ico",
       "platform": "PC"
+    },
+     {
+      "id": 21,
+      "title": "VidBee",
+      "description": "Descarga videos de cualquier sitio web",
+      "category": "Herramientas",
+      "downloadLink": "https://vidbee.org/",
+      "icon": "https://vidbee.org/favicon.svg",
+      "platform": "Universal"
     }
   ]
 }
