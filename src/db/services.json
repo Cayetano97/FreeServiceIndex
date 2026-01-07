@@ -196,6 +196,15 @@
       "downloadLink": "https://vidbee.org/",
       "icon": "https://vidbee.org/favicon.svg",
       "platform": "Universal"
+    },
+    {
+      "id": 22,
+      "title": "TizenTube",
+      "description": "Parchea YouTube en TV Samsung (Tizen) AdBlock + SponsorBlock + DeArrow",
+      "category": "Streaming",
+      "downloadLink": "https://tizentube.6513006.xyz/",
+      "icon": "https://avatars.githubusercontent.com/u/29177546?s=48&v=4",
+      "platform": "TV"
     }
   ]
 }
