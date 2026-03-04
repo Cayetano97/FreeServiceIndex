@@ -188,7 +188,7 @@
       "icon": "https://www.retro-exo.com/favicon.ico",
       "platform": "PC"
     },
-     {
+    {
       "id": 21,
       "title": "VidBee",
       "description": "Descarga videos de cualquier sitio web",
@@ -205,6 +205,15 @@
       "downloadLink": "https://tizentube.6513006.xyz/",
       "icon": "https://avatars.githubusercontent.com/u/29177546?s=48&v=4",
       "platform": "TV"
+    },
+    {
+      "id": 23,
+      "title": "YARRLIST",
+      "description": "Web que reúne y ordena enlaces a páginas y herramientas de descargas y streaming",
+      "category": "Herramientas",
+      "downloadLink": "https://yarrlist.net/",
+      "icon": "https://styles.redditmedia.com/t5_brh96j/styles/communityIcon_752fnxlg347d1.png?width=128&frame=1&auto=webp&s=6e8152a61a07ee06026740b615d55c0f1d4d3f78",
+      "platform": "Universal"
     }
   ]
 }
