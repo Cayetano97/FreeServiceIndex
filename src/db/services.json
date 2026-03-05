@@ -214,6 +214,24 @@
       "downloadLink": "https://yarrlist.net/",
       "icon": "https://styles.redditmedia.com/t5_brh96j/styles/communityIcon_752fnxlg347d1.png?width=128&frame=1&auto=webp&s=6e8152a61a07ee06026740b615d55c0f1d4d3f78",
       "platform": "Universal"
+    },
+    {
+      "id": 24,
+      "title": "DixMax",
+      "description": "App para ver películas, programas de televisión y series",
+      "category": "Streaming",
+      "downloadLink": "https://dixmax.es/",
+      "icon": "https://dixmax.es/wp-content/uploads/2025/12/cropped-dixmax-icon-image-min-180x180.jpeg",
+      "platform": "Android"
+    },
+    {
+      "id": 25,
+      "title": "Youtube-webos",
+      "description": "YouTube app para webOS sin anuncios",
+      "category": "Streaming",
+      "downloadLink": "https://github.com/webosbrew/youtube-webos",
+      "icon": "https://avatars.githubusercontent.com/u/76105412?s=48&v=4",
+      "platform": "TV"
     }
   ]
 }
