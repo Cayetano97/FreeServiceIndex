@@ -232,6 +232,15 @@
       "downloadLink": "https://github.com/webosbrew/youtube-webos",
       "icon": "https://avatars.githubusercontent.com/u/76105412?s=48&v=4",
       "platform": "TV"
+    },
+    {
+      "id": 26,
+      "title": "TizenTubeCobalt",
+      "description": "YouTube (TizenTube) sin anuncios y más para AndroidTV",
+      "category": "Streaming",
+      "downloadLink": "https://github.com/reisxd/TizenTubeCobalt",
+      "icon": "https://avatars.githubusercontent.com/u/29177546?s=48&v=4",
+      "platform": "TV"
     }
   ]
 }
