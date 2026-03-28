@@ -2,23 +2,25 @@
 
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![@knadh/oat](https://img.shields.io/badge/@knadh%2Foat-0.4.2-0ea5e9?style=for-the-badge)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-**Free Service Index** is a curated, open-source directory gathering the best free services, tools, and applications to enjoy the internet.
+**Free Service Index** is a directory gathering the best free services, tools, and applications to enjoy the internet.
 
 ---
 
 ## Tech Stack
 
-| Technology        | Purpose                                  |
-| :---------------- | :--------------------------------------- |
-| **React 18**      | Core UI library                          |
-| **Vite**          | Build tool and development environment   |
-| **Tailwind CSS**  | Modern and responsive styling            |
-| **TypeScript**    | Robust development and typing            |
-| **Framer Motion** | Smooth animations and micro-interactions |
-| **Lucide React**  | Minimalist iconography                   |
+| Technology                      | Purpose                                  | Version        |
+| :------------------------------ | :--------------------------------------- | :------------- |
+| **React**                       | Core UI library                          | 18.3.1         |
+| **React Router**                | Client-side routing                      | 7.6.2          |
+| **Vite**                        | Build tool and development environment   | 7.2.4          |
+| **TypeScript**                  | Robust development and typing            | 5.8.3          |
+| **Framer Motion**               | Smooth animations and micro-interactions | 11.18.2        |
+| **Lucide React**                | Minimalist iconography                   | 0.446.0        |
+| **React Markdown + Remark GFM** | Markdown rendering with GitHub features  | 10.1.0 / 4.0.1 |
+| **@knadh/oat**                  | UI assets (styles + scripts)             | 0.4.2          |
 
 ## Getting Started
 
