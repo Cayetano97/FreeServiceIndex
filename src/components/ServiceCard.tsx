@@ -28,32 +28,32 @@ const ServiceCard = memo(function ServiceCard({
       href={downloadLink}
       target="_blank"
       rel="noopener noreferrer"
-      className="block h-full group"
+      className="service-card-link"
     >
-      <Card className="h-full bg-card border-border/50 hover:border-foreground/20 transition-all duration-300 hover:shadow-sm relative overflow-hidden">
-        <CardHeader className="space-y-4">
-          <div className="flex items-start justify-between">
-            <div className="p-2 bg-secondary/50 rounded-lg group-hover:bg-secondary transition-colors">
+      <Card className="service-card">
+        <CardHeader className="service-card__header">
+          <div className="service-card__top">
+            <div className="service-card__icon">
               <img
                 src={icon}
                 alt={`${title} icon`}
-                className="w-6 h-6"
+                className="service-card__icon-img"
                 loading="lazy"
               />
             </div>
-            <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+            <ExternalLink className="service-card__link-icon" />
           </div>
 
-          <div className="space-y-1">
-            <h3 className="font-semibold text-lg tracking-tight text-foreground group-hover:text-primary transition-colors">
+          <div className="service-card__meta">
+            <h3 className="service-card__title">
               {title}
             </h3>
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary" className="text-xs font-normal bg-secondary text-secondary-foreground hover:bg-secondary/80">
+            <div className="service-card__badges">
+              <Badge variant="secondary">
                 {category}
               </Badge>
               {platform && (
-                <Badge variant="outline" className="text-xs font-normal border-border text-muted-foreground">
+                <Badge variant="outline">
                   {platform}
                 </Badge>
               )}
@@ -62,7 +62,7 @@ const ServiceCard = memo(function ServiceCard({
         </CardHeader>
 
         <CardContent>
-          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
+          <p className="service-card__description">
             {description}
           </p>
         </CardContent>

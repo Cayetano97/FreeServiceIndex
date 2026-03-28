@@ -19,21 +19,21 @@ const ImageWithLoader = ({ src, alt }: ImageWithLoaderProps) => {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="relative w-full flex justify-center items-center my-4">
+    <div className="image-loader">
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted/50 rounded-lg">
-          <Loader2 className="w-8 h-8 text-primary animate-spin" />
+        <div className="image-loader__overlay">
+          <Loader2 className="image-loader__spinner" />
         </div>
       )}
       {hasError ? (
-        <div className="w-full h-48 flex items-center justify-center bg-muted rounded-lg text-muted-foreground">
+        <div className="image-loader__error">
           Error al cargar la imagen
         </div>
       ) : (
         <img
           src={src}
           alt={alt}
-          className="rounded-lg shadow-lg max-w-full h-auto"
+          className="image-loader__img"
           onLoad={() => setIsLoading(false)}
           onError={() => {
             setIsLoading(false);
@@ -51,18 +51,18 @@ const GuideList = ({ guides, selectedGuide, onSelectGuide }: {
   selectedGuide: Guide | null; 
   onSelectGuide: (guide: Guide) => void;
 }) => (
-  <div className="bg-card p-4 rounded-lg border max-h-[calc(100vh-12rem)] flex flex-col">
-    <h2 className="text-xl font-bold mb-4 text-card-foreground">Guías</h2>
-    <div className="overflow-y-auto flex-1 pr-2">
-      <ul className="space-y-2">
+  <div className="guides-panel guides-panel--list">
+    <h2 className="guides-title">Guías</h2>
+    <div className="guides-scroll">
+      <ul className="guides-list">
         {guides.map((guide) => (
           <li key={guide.filename}>
             <button
               onClick={() => onSelectGuide(guide)}
-              className={`w-full text-left p-2 rounded transition-colors ${
+              className={`guide-button ${
                 selectedGuide?.filename === guide.filename
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-card-foreground hover:bg-muted'
+                  ? 'is-active'
+                  : ''
               }`}
             >
               {guide.title}
@@ -75,9 +75,9 @@ const GuideList = ({ guides, selectedGuide, onSelectGuide }: {
 );
 
 const GuideContent = ({ guide }: { guide: Guide | null }) => (
-  <div className="bg-card p-4 rounded-lg border min-h-[calc(100vh-12rem)]">
+  <div className="guides-panel guides-panel--content">
     {guide ? (
-      <div className="prose dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground prose-li:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-a:text-blue-400 prose-a:hover:text-blue-300 prose-a:underline prose-img:rounded-lg prose-img:shadow-lg">
+      <div className="markdown">
         <ReactMarkdown 
           remarkPlugins={[remarkGfm]}
           components={{
@@ -88,7 +88,7 @@ const GuideContent = ({ guide }: { guide: Guide | null }) => (
         </ReactMarkdown>
       </div>
     ) : (
-      <div className="text-center text-muted-foreground">
+      <div className="guides-empty">
         No hay guías disponibles
       </div>
     )}
@@ -132,16 +132,16 @@ const Guides = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="md:col-span-1">
+    <div className="guides">
+      <div className="guides-layout">
+        <div className="guides-col">
           <GuideList 
             guides={guides} 
             selectedGuide={selectedGuide} 
             onSelectGuide={setSelectedGuide} 
           />
         </div>
-        <div className="md:col-span-3">
+        <div className="guides-col guides-col--wide">
           <GuideContent guide={selectedGuide} />
         </div>
       </div>

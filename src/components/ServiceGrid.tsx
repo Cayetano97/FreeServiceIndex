@@ -63,14 +63,14 @@ const ServiceGrid = ({
       variants={containerVariants}
       initial="hidden"
       animate="show"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mx-auto max-w-7xl"
+      className="service-grid"
       style={{ willChange: "transform" }}
     >
       {filteredAndSortedServices.map((service) => (
         <motion.div
           key={service.id || service.title}
           variants={itemVariants}
-          className="h-full"
+          className="service-grid__item"
           style={{ willChange: "transform" }}
         >
           <ServiceCard {...service} />

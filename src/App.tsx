@@ -7,11 +7,10 @@ import {
 } from "react-router-dom";
 import { useMemo, useState } from "react";
 import Header from "./components/Header";
-import Guides from "./components/Guides";
+// import Guides from "./components/Guides";
 import CategoryScroll from "./components/CategoryScroll";
 import PlatformScroll from "./components/PlatformScroll";
 import ServiceGrid from "./components/ServiceGrid";
-import { Analytics } from "@vercel/analytics/react";
 import servicesData from "./db/services.json";
 
 const Navigation = () => {
@@ -19,33 +18,21 @@ const Navigation = () => {
   const isHome = location.pathname === "/";
 
   return (
-    <nav className="flex space-x-6">
+    <nav className="nav">
       <Link
         to="/"
-        className={`
-          py-4 text-sm font-medium transition-colors border-b-2
-          ${
-            isHome
-              ? "border-foreground text-foreground"
-              : "border-transparent text-muted-foreground hover:text-foreground"
-          }
-        `}
+        className={`nav__link ${isHome ? "is-active" : ""}`}
       >
         Servicios
       </Link>
+      {/*
       <Link
         to="/guides"
-        className={`
-          py-4 text-sm font-medium transition-colors border-b-2
-          ${
-            !isHome
-              ? "border-foreground text-foreground"
-              : "border-transparent text-muted-foreground hover:text-foreground"
-          }
-        `}
+        className={`nav__link ${!isHome ? "is-active" : ""}`}
       >
         Guías
       </Link>
+      */}
     </nav>
   );
 };
@@ -67,8 +54,8 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-4">
+    <div className="stack stack--lg">
+      <div className="stack stack--md">
         <CategoryScroll
           categories={categories}
           selectedCategory={selectedCategory}
@@ -91,20 +78,19 @@ const Home = () => {
 
 const App = () => (
   <Router>
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
+    <div className="app-shell">
       <Header />
-      <div className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="nav-shell">
+        <div className="container">
           <Navigation />
         </div>
       </div>
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+      <main className="container main">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/guides" element={<Guides />} />
+          {/* <Route path="/guides" element={<Guides />} /> */}
         </Routes>
       </main>
-      <Analytics />
     </div>
   </Router>
 );

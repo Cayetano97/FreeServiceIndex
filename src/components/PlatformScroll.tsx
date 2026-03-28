@@ -19,14 +19,7 @@ const PlatformButton = ({
 }) => (
   <button
     onClick={onClick}
-    className={`
-      px-3 py-1.5 text-sm rounded-md transition-all duration-200 border
-      ${
-        isSelected
-          ? "bg-foreground text-background border-foreground font-medium"
-          : "bg-transparent text-muted-foreground border-transparent hover:border-border hover:text-foreground"
-      }
-    `}
+    className={`chip ${isSelected ? "is-active" : ""}`}
   >
     {platform}
   </button>
@@ -43,11 +36,11 @@ const PlatformScroll = ({
   }, []);
 
   return (
-    <div className="space-y-2">
-      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+    <div className="filter-group">
+      <div className="filter-title">
         Plataformas
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="filter-chips">
         <PlatformButton
           platform="Todas"
           isSelected={selectedPlatform === "Todas"}
