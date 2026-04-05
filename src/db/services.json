@@ -149,7 +149,7 @@
       "description": "Descarga libros/artículos científicos",
       "category": "Herramientas",
       "downloadLink": "https://t.me/libgen_scihub_rebellibrarian_bot",
-      "icon": "https://sci-hub.se/pictures/sci-hub%20red.svg",
+      "icon": "https://icons.iconarchive.com/icons/academicons-team/academicons/128/sci-hub-icon.png",
       "platform": "Universal"
     },
     {
@@ -176,7 +176,7 @@
       "description": "Descarga libros y revistas gratis",
       "category": "Lectura",
       "downloadLink": "https://ww2.librolandia.net/",
-      "icon": "https://ww2.librolandia.net/wp-content/uploads/2022/08/librolandiaicono-300x300.png",
+      "icon": "https://s.w.org/images/core/emoji/14.0.0/svg/1f4da.svg",
       "platform": "Universal"
     },
     {

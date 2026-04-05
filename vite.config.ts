@@ -14,8 +14,12 @@ export default defineConfig({
     minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor': ['react', 'react-dom', 'framer-motion'],
+        manualChunks(id: string) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom') || id.includes('framer-motion')) {
+              return 'vendor';
+            }
+          }
         },
       },
     },

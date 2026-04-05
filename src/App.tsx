@@ -19,6 +19,7 @@ const Navigation = () => {
 
   return (
     <nav className="nav">
+      {/*
       <Link
         to="/"
         className={`nav__link ${isHome ? "is-active" : ""}`}
