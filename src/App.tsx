@@ -2,8 +2,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  useLocation,
 } from "react-router-dom";
 import { useMemo, useState } from "react";
 import Header from "./components/Header";
@@ -14,9 +12,6 @@ import ServiceGrid from "./components/ServiceGrid";
 import servicesData from "./db/services.json";
 
 const Navigation = () => {
-  const location = useLocation();
-  const isHome = location.pathname === "/";
-
   return (
     <nav className="nav">
       {/*
