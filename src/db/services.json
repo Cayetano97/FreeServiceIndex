@@ -241,6 +241,15 @@
       "downloadLink": "https://github.com/reisxd/TizenTubeCobalt",
       "icon": "https://avatars.githubusercontent.com/u/29177546?s=48&v=4",
       "platform": "TV"
+    },
+    {
+      "id": 27,
+      "title": "Morhpe Manager",
+      "description": "Parchea apps de Android [YouTube].",
+      "category": "Streaming",
+      "downloadLink": "https://github.com/MorpheApp/morphe-manager",
+      "icon": "https://avatars.githubusercontent.com/u/246280111?s=48&v=4",
+      "platform": "Android"
     }
   ]
 }
