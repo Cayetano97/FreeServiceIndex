@@ -5,11 +5,9 @@ export default function Header() {
     <header className="app-header">
       <div className="container header-content">
         <div className="logo-mark">
-          <Zap className="logo-icon" />
+          <Zap className="logo-icon" aria-hidden="true" />
         </div>
-        <h1 className="logo-title">
-          FreeServiceIndex
-        </h1>
+        <h1 className="logo-title">FreeServiceIndex</h1>
       </div>
     </header>
   );

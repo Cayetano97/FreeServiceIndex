@@ -1,41 +1,21 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import { useMemo, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useMemo, memo } from "react";
 import Header from "./components/Header";
-// import Guides from "./components/Guides";
 import CategoryScroll from "./components/CategoryScroll";
 import PlatformScroll from "./components/PlatformScroll";
 import ServiceGrid from "./components/ServiceGrid";
 import servicesData from "./db/services.json";
+import { useUrlParam } from "@/lib/utils";
 
-const Navigation = () => {
-  return (
-    <nav className="nav">
-      {/*
-      <Link
-        to="/"
-        className={`nav__link ${isHome ? "is-active" : ""}`}
-      >
-        Servicios
-      </Link>
-      {/*
-      <Link
-        to="/guides"
-        className={`nav__link ${!isHome ? "is-active" : ""}`}
-      >
-        Guías
-      </Link>
-      */}
-    </nav>
+const Home = memo(() => {
+  const [selectedCategory, setSelectedCategory] = useUrlParam(
+    "category",
+    "Todos",
   );
-};
-
-const Home = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
-  const [selectedPlatform, setSelectedPlatform] = useState("Universal");
+  const [selectedPlatform, setSelectedPlatform] = useUrlParam(
+    "platform",
+    "Universal",
+  );
 
   const platforms = useMemo(() => {
     const set = new Set<string>();
@@ -49,42 +29,54 @@ const Home = () => {
     return servicesData.categories;
   }, []);
 
+  const filteredServices = useMemo(() => {
+    const byCategory =
+      selectedCategory === "Todos"
+        ? servicesData.services
+        : servicesData.services.filter(
+            (service) => service.category === selectedCategory,
+          );
+    const byPlatform =
+      selectedPlatform === "Universal"
+        ? byCategory
+        : byCategory.filter((service) => service.platform === selectedPlatform);
+    return byPlatform.sort((a, b) => a.title.localeCompare(b.title));
+  }, [selectedCategory, selectedPlatform]);
+
   return (
-    <div className="stack stack--lg">
-      <div className="stack stack--md">
-        <CategoryScroll
-          categories={categories}
-          selectedCategory={selectedCategory}
-          onSelectCategory={setSelectedCategory}
-        />
-        <PlatformScroll
-          platforms={platforms}
-          selectedPlatform={selectedPlatform}
-          onSelectPlatform={setSelectedPlatform}
+    <>
+      <a href="#main-content" className="skip-link">
+        Saltar al contenido
+      </a>
+      <div className="stack stack--lg">
+        <div className="stack stack--md">
+          <CategoryScroll
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
+          />
+          <PlatformScroll
+            platforms={platforms}
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={setSelectedPlatform}
+          />
+        </div>
+        <ServiceGrid
+          services={filteredServices}
+          totalFiltered={filteredServices.length}
         />
       </div>
-      <ServiceGrid
-        services={servicesData.services}
-        selectedCategory={selectedCategory}
-        selectedPlatform={selectedPlatform}
-      />
-    </div>
+    </>
   );
-};
+});
 
 const App = () => (
   <Router>
     <div className="app-shell">
       <Header />
-      <div className="nav-shell">
-        <div className="container">
-          <Navigation />
-        </div>
-      </div>
-      <main className="container main">
+      <main id="main-content" className="container main">
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/guides" element={<Guides />} /> */}
         </Routes>
       </main>
     </div>

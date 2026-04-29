@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 
 interface PlatformScrollProps {
@@ -17,19 +16,16 @@ const PlatformButton = ({
   isSelected: boolean;
   onClick: () => void;
 }) => (
-  <button
-    onClick={onClick}
-    className={`chip ${isSelected ? "is-active" : ""}`}
-  >
+  <button onClick={onClick} className={`chip ${isSelected ? "is-active" : ""}`}>
     {platform}
   </button>
 );
 
 const PlatformScroll = ({
   platforms,
-  selectedPlatform = "Todas",
+  selectedPlatform = "Universal",
   onSelectPlatform,
-  defaultPlatform = "Todas",
+  defaultPlatform = "Universal",
 }: PlatformScrollProps) => {
   useEffect(() => {
     onSelectPlatform(defaultPlatform);
@@ -37,14 +33,12 @@ const PlatformScroll = ({
 
   return (
     <div className="filter-group">
-      <div className="filter-title">
-        Plataformas
-      </div>
-      <div className="filter-chips">
+      <div className="filter-title">Plataformas</div>
+      <div className="filter-chips" aria-label="Plataformas">
         <PlatformButton
-          platform="Todas"
-          isSelected={selectedPlatform === "Todas"}
-          onClick={() => onSelectPlatform("Todas")}
+          platform="Universal"
+          isSelected={selectedPlatform === "Universal"}
+          onClick={() => onSelectPlatform("Universal")}
         />
         {platforms.map((platform) => (
           <PlatformButton

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useMemo } from "react";
 import ServiceCard from "./ServiceCard";
 
 interface Service {
@@ -14,8 +13,7 @@ interface Service {
 
 interface ServiceGridProps {
   services: Service[];
-  selectedCategory: string;
-  selectedPlatform?: string;
+  totalFiltered?: number;
 }
 
 const containerVariants = {
@@ -41,42 +39,29 @@ const itemVariants = {
   },
 };
 
-const ServiceGrid = ({
-  services,
-  selectedCategory,
-  selectedPlatform = "Todas",
-}: ServiceGridProps) => {
-  const filteredAndSortedServices = useMemo(() => {
-    const byCategory =
-      selectedCategory === "Todos"
-        ? services
-        : services.filter((service) => service.category === selectedCategory);
-    const byPlatform =
-      selectedPlatform === "Todas"
-        ? byCategory
-        : byCategory.filter((service) => service.platform === selectedPlatform);
-    return byPlatform.sort((a, b) => a.title.localeCompare(b.title));
-  }, [services, selectedCategory, selectedPlatform]);
-
+const ServiceGrid = ({ services, totalFiltered }: ServiceGridProps) => {
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-      className="service-grid"
-      style={{ willChange: "transform" }}
-    >
-      {filteredAndSortedServices.map((service) => (
-        <motion.div
-          key={service.id || service.title}
-          variants={itemVariants}
-          className="service-grid__item"
-          style={{ willChange: "transform" }}
-        >
-          <ServiceCard {...service} />
-        </motion.div>
-      ))}
-    </motion.div>
+    <>
+      <span className="sr-only" aria-live="polite">
+        {totalFiltered} servicios encontrados
+      </span>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+        className="service-grid"
+      >
+        {services.map((service) => (
+          <motion.div
+            key={service.id || service.title}
+            variants={itemVariants}
+            className="service-grid__item"
+          >
+            <ServiceCard {...service} />
+          </motion.div>
+        ))}
+      </motion.div>
+    </>
   );
 };
 

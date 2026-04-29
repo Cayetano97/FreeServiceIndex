@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 
 interface CategoryScrollProps {
@@ -17,10 +16,7 @@ const CategoryButton = ({
   isSelected: boolean;
   onClick: () => void;
 }) => (
-  <button
-    onClick={onClick}
-    className={`chip ${isSelected ? "is-active" : ""}`}
-  >
+  <button onClick={onClick} className={`chip ${isSelected ? "is-active" : ""}`}>
     {category}
   </button>
 );
@@ -37,10 +33,8 @@ const CategoryScroll = ({
 
   return (
     <div className="filter-group">
-      <div className="filter-title">
-        Categorías
-      </div>
-      <div className="filter-chips">
+      <div className="filter-title">Categorías</div>
+      <div className="filter-chips" aria-label="Categorías">
         <CategoryButton
           category="Todos"
           isSelected={selectedCategory === "Todos"}

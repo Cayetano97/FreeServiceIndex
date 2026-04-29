@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { Loader2 } from 'lucide-react';
+import { useState, useEffect, memo } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { Loader2 } from "lucide-react";
+import { useUrlParam } from "@/lib/utils";
 
 interface Guide {
   title: string;
@@ -26,9 +27,7 @@ const ImageWithLoader = ({ src, alt }: ImageWithLoaderProps) => {
         </div>
       )}
       {hasError ? (
-        <div className="image-loader__error">
-          Error al cargar la imagen
-        </div>
+        <div className="image-loader__error">Error al cargar la imagen</div>
       ) : (
         <img
           src={src}
@@ -39,16 +38,20 @@ const ImageWithLoader = ({ src, alt }: ImageWithLoaderProps) => {
             setIsLoading(false);
             setHasError(true);
           }}
-          style={{ display: isLoading ? 'none' : 'block' }}
+          style={{ display: isLoading ? "none" : "block" }}
         />
       )}
     </div>
   );
 };
 
-const GuideList = ({ guides, selectedGuide, onSelectGuide }: { 
-  guides: Guide[]; 
-  selectedGuide: Guide | null; 
+const GuideList = ({
+  guides,
+  selectedGuide,
+  onSelectGuide,
+}: {
+  guides: Guide[];
+  selectedGuide: Guide | null;
   onSelectGuide: (guide: Guide) => void;
 }) => (
   <div className="guides-panel guides-panel--list">
@@ -60,9 +63,7 @@ const GuideList = ({ guides, selectedGuide, onSelectGuide }: {
             <button
               onClick={() => onSelectGuide(guide)}
               className={`guide-button ${
-                selectedGuide?.filename === guide.filename
-                  ? 'is-active'
-                  : ''
+                selectedGuide?.filename === guide.filename ? "is-active" : ""
               }`}
             >
               {guide.title}
@@ -78,75 +79,79 @@ const GuideContent = ({ guide }: { guide: Guide | null }) => (
   <div className="guides-panel guides-panel--content">
     {guide ? (
       <div className="markdown">
-        <ReactMarkdown 
+        <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
-            img: ({ src, alt }) => <ImageWithLoader src={src} alt={alt} />
+            img: ({ src, alt }) => <ImageWithLoader src={src} alt={alt} />,
           }}
         >
           {guide.content}
         </ReactMarkdown>
       </div>
     ) : (
-      <div className="guides-empty">
-        No hay guías disponibles
-      </div>
+      <div className="guides-empty">No hay guías disponibles</div>
     )}
   </div>
 );
 
 const Guides = () => {
   const [guides, setGuides] = useState<Guide[]>([]);
-  const [selectedGuide, setSelectedGuide] = useState<Guide | null>(null);
+  const [selectedGuideFilename, setSelectedGuideFilename] = useUrlParam(
+    "guide",
+    "",
+  );
 
   useEffect(() => {
     const loadGuides = async () => {
       try {
-        const guidesContext = import.meta.glob('/src/db/guides/*.md', { 
-          query: '?raw',
-          import: 'default'
+        const guidesContext = import.meta.glob("/src/db/guides/*.md", {
+          query: "?raw",
+          import: "default",
         });
         const loadedGuides: Guide[] = [];
 
         for (const path in guidesContext) {
-          const content = await guidesContext[path]() as string;
-          const filename = path.split('/').pop() || '';
-          const title = filename.replace('.md', '');
-          
+          const content = (await guidesContext[path]()) as string;
+          const filename = path.split("/").pop() || "";
+          const title = filename.replace(".md", "");
+
           loadedGuides.push({
             title,
             content,
-            filename
+            filename,
           });
         }
 
         setGuides(loadedGuides);
-        if (loadedGuides.length > 0) {
-          setSelectedGuide(loadedGuides[0]);
+        if (loadedGuides.length > 0 && !selectedGuideFilename) {
+          setSelectedGuideFilename(loadedGuides[0].filename);
         }
       } catch (error) {
-        console.error('Error al cargar las guías:', error);
+        console.error("Error al cargar las guías:", error);
       }
     };
     loadGuides();
   }, []);
 
+  const currentGuide =
+    guides.find((g) => g.filename === selectedGuideFilename) || null;
+
   return (
     <div className="guides">
       <div className="guides-layout">
         <div className="guides-col">
-          <GuideList 
-            guides={guides} 
-            selectedGuide={selectedGuide} 
-            onSelectGuide={setSelectedGuide} 
+          <GuideList
+            guides={guides}
+            selectedGuide={currentGuide}
+            onSelectGuide={(guide) => setSelectedGuideFilename(guide.filename)}
           />
         </div>
         <div className="guides-col guides-col--wide">
-          <GuideContent guide={selectedGuide} />
+          <GuideContent guide={currentGuide} />
         </div>
       </div>
     </div>
   );
 };
 
-export default Guides; 
+export default memo(Guides);
