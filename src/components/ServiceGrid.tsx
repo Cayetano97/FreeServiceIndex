@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ServiceCard from "./ServiceCard";
 
 interface Service {
@@ -37,6 +37,14 @@ const itemVariants = {
       ease: "easeOut",
     },
   },
+  exit: {
+    y: -10,
+    opacity: 0,
+    transition: {
+      duration: 0.15,
+      ease: "easeIn",
+    },
+  },
 };
 
 const ServiceGrid = ({ services, totalFiltered }: ServiceGridProps) => {
@@ -51,15 +59,17 @@ const ServiceGrid = ({ services, totalFiltered }: ServiceGridProps) => {
         animate="show"
         className="service-grid"
       >
-        {services.map((service) => (
-          <motion.div
-            key={service.id || service.title}
-            variants={itemVariants}
-            className="service-grid__item"
-          >
-            <ServiceCard {...service} />
-          </motion.div>
-        ))}
+        <AnimatePresence initial={false} mode="popLayout">
+          {services.map((service) => (
+            <motion.div
+              key={service.id || service.title}
+              variants={itemVariants}
+              className="service-grid__item"
+            >
+              <ServiceCard {...service} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </motion.div>
     </>
   );

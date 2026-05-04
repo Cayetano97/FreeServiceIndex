@@ -39,6 +39,7 @@ body {
     color: var(--foreground);
     overflow-x: hidden;
     color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -158,6 +159,7 @@ img {
     font-size: 1.25rem;
     font-weight: 700;
     letter-spacing: -0.01em;
+    text-wrap: balance;
 }
 
 .main {
@@ -235,7 +237,8 @@ img {
 }
 
 .chip:active {
-    transform: none;
+    transform: scale(0.96);
+    transition: transform 0.1s ease;
 }
 
 .service-grid {
@@ -279,9 +282,12 @@ img {
 .card {
     background: var(--card);
     color: var(--card-foreground);
-    border: 1px solid var(--border);
+    border: none;
     border-radius: 1rem;
     overflow: hidden;
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .card__header {
@@ -309,6 +315,7 @@ img {
     margin: 0;
     font-size: 1.05rem;
     font-weight: 600;
+    text-wrap: balance;
 }
 
 .card__description {
@@ -316,12 +323,18 @@ img {
     color: var(--muted-foreground);
     font-size: 0.9rem;
     line-height: 1.5;
+    text-wrap: pretty;
 }
 
 .service-card-link {
     display: block;
     height: 100%;
     touch-action: manipulation;
+}
+
+.service-card-link:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease;
 }
 
 .service-card {
@@ -333,8 +346,10 @@ img {
 }
 
 .service-card:hover {
-    border-color: rgba(248, 248, 250, 0.2);
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
+    border-color: transparent;
+    box-shadow:
+        0 16px 30px rgba(0, 0, 0, 0.25),
+        0 8px 16px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
 }
 
@@ -350,9 +365,14 @@ img {
 
 .service-card__icon {
     padding: 0.45rem;
-    background: rgba(248, 248, 250, 0.08);
+    background: rgba(248, 248, 248, 0.08);
     border-radius: 0.6rem;
     transition: background 0.2s ease;
+}
+
+.service-card__icon img {
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
 }
 
 .service-card:hover .service-card__icon {
@@ -362,6 +382,8 @@ img {
 .service-card__icon-img {
     width: 1.4rem;
     height: 1.4rem;
+    outline: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
 }
 
 .service-card__link-icon {
@@ -481,6 +503,7 @@ img {
     margin: 0 0 0.75rem;
     font-size: 1.1rem;
     font-weight: 700;
+    text-wrap: balance;
 }
 
 .guides-scroll {
@@ -508,6 +531,15 @@ img {
     color: var(--card-foreground);
     cursor: pointer;
     transition:
+        background 0.2s ease,
+        color 0.2s ease;
+    min-height: 2.5rem;
+}
+
+.guide-button:active {
+    transform: scale(0.96);
+    transition:
+        transform 0.1s ease,
         background 0.2s ease,
         color 0.2s ease;
 }
@@ -585,6 +617,7 @@ img {
 .markdown img {
     border-radius: 0.75rem;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+    outline: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .image-loader {
@@ -627,6 +660,7 @@ img {
 .image-loader__img {
     border-radius: 0.75rem;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+    outline: 1px solid rgba(255, 255, 255, 0.1);
     max-width: 100%;
     height: auto;
 }
@@ -634,5 +668,104 @@ img {
 @keyframes spin {
     to {
         transform: rotate(360deg);
+    }
+}
+
+/* Search Input */
+.search-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+@media (min-width: 960px) {
+    .search-input {
+        width: 30%;
+    }
+}
+
+.search-input__icon {
+    position: absolute;
+    left: 0.85rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--muted-foreground);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.search-input__field {
+    width: 100%;
+    padding: 0.65rem 2.75rem 0.65rem 2.5rem;
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--foreground);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.search-input__field::placeholder {
+    color: var(--faint-foreground);
+}
+
+.search-input__field:focus {
+    outline: none;
+    border-color: var(--foreground);
+    box-shadow:
+        0 0 0 2px var(--background),
+        0 0 0 4px var(--ring);
+}
+
+.search-input__clear {
+    position: absolute;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.search-input__clear:hover {
+    background: var(--muted);
+    color: var(--foreground);
+}
+
+.search-input__clear:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 2px var(--background),
+        0 0 0 4px var(--ring);
+}
+
+.search-input__clear-icon {
+    width: 1rem;
+    height: 1rem;
+}
+
+@media (max-width: 639px) {
+    .search-input__field {
+        padding: 0.55rem 2.5rem 0.55rem 2.25rem;
+        font-size: 0.9rem;
+    }
+
+    .search-input__icon {
+        left: 0.75rem;
+        width: 1rem;
+        height: 1rem;
     }
 }

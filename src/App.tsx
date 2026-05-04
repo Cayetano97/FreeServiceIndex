@@ -3,11 +3,13 @@ import { useMemo, memo } from "react";
 import Header from "./components/Header";
 import CategoryScroll from "./components/CategoryScroll";
 import PlatformScroll from "./components/PlatformScroll";
+import SearchInput from "./components/ui/search-input/SearchInput";
 import ServiceGrid from "./components/ServiceGrid";
 import servicesData from "./db/services.json";
 import { useUrlParam } from "@/lib/utils";
 
 const Home = memo(() => {
+  const [searchQuery, setSearchQuery] = useUrlParam("search", "");
   const [selectedCategory, setSelectedCategory] = useUrlParam(
     "category",
     "Todos",
@@ -30,18 +32,26 @@ const Home = memo(() => {
   }, []);
 
   const filteredServices = useMemo(() => {
+    const bySearch = searchQuery.trim()
+      ? servicesData.services.filter(
+          (service) =>
+            service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            service.description
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase()) ||
+            service.category.toLowerCase().includes(searchQuery.toLowerCase()),
+        )
+      : servicesData.services;
     const byCategory =
       selectedCategory === "Todos"
-        ? servicesData.services
-        : servicesData.services.filter(
-            (service) => service.category === selectedCategory,
-          );
+        ? bySearch
+        : bySearch.filter((service) => service.category === selectedCategory);
     const byPlatform =
       selectedPlatform === "Universal"
         ? byCategory
         : byCategory.filter((service) => service.platform === selectedPlatform);
     return byPlatform.sort((a, b) => a.title.localeCompare(b.title));
-  }, [selectedCategory, selectedPlatform]);
+  }, [selectedCategory, selectedPlatform, searchQuery]);
 
   return (
     <>
@@ -59,6 +69,11 @@ const Home = memo(() => {
             platforms={platforms}
             selectedPlatform={selectedPlatform}
             onSelectPlatform={setSelectedPlatform}
+          />
+          <SearchInput
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Buscar servicios..."
           />
         </div>
         <ServiceGrid

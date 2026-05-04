@@ -40,14 +40,16 @@ const PlatformScroll = ({
           isSelected={selectedPlatform === "Universal"}
           onClick={() => onSelectPlatform("Universal")}
         />
-        {platforms.map((platform) => (
-          <PlatformButton
-            key={platform}
-            platform={platform}
-            isSelected={selectedPlatform === platform}
-            onClick={() => onSelectPlatform(platform)}
-          />
-        ))}
+        {platforms
+          .filter((p) => p !== defaultPlatform)
+          .map((platform) => (
+            <PlatformButton
+              key={platform}
+              platform={platform}
+              isSelected={selectedPlatform === platform}
+              onClick={() => onSelectPlatform(platform)}
+            />
+          ))}
       </div>
     </div>
   );
