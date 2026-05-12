@@ -1,4 +1,10 @@
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  LazyMotion,
+  AnimatePresence,
+  m,
+  domAnimation,
+  useReducedMotion,
+} from "framer-motion";
 import ServiceCard from "./ServiceCard";
 
 interface Service {
@@ -48,30 +54,44 @@ const itemVariants = {
 };
 
 const ServiceGrid = ({ services, totalFiltered }: ServiceGridProps) => {
+  const prefersReducedMotion = useReducedMotion();
+
+  const effectiveContainerVariants = prefersReducedMotion
+    ? { hidden: { opacity: 1 }, show: { opacity: 1 } }
+    : containerVariants;
+
+  const effectiveItemVariants = prefersReducedMotion
+    ? {
+        hidden: { opacity: 1, y: 0 },
+        show: { opacity: 1, y: 0 },
+        exit: { opacity: 1, y: 0 },
+      }
+    : itemVariants;
+
   return (
-    <>
+    <LazyMotion features={domAnimation}>
       <span className="sr-only" aria-live="polite">
         {totalFiltered} servicios encontrados
       </span>
-      <motion.div
-        variants={containerVariants}
+      <m.div
+        variants={effectiveContainerVariants}
         initial="hidden"
         animate="show"
         className="service-grid"
       >
         <AnimatePresence initial={false} mode="popLayout">
           {services.map((service) => (
-            <motion.div
+            <m.div
               key={service.id || service.title}
-              variants={itemVariants}
+              variants={effectiveItemVariants}
               className="service-grid__item"
             >
               <ServiceCard {...service} />
-            </motion.div>
+            </m.div>
           ))}
         </AnimatePresence>
-      </motion.div>
-    </>
+      </m.div>
+    </LazyMotion>
   );
 };
 

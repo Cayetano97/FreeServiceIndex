@@ -8,7 +8,7 @@ const variants = {
   outline: "badge badge--outline",
 };
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: keyof typeof variants;
 }
 

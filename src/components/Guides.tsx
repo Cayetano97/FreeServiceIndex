@@ -108,19 +108,15 @@ const Guides = () => {
           query: "?raw",
           import: "default",
         });
-        const loadedGuides: Guide[] = [];
-
-        for (const path in guidesContext) {
-          const content = (await guidesContext[path]()) as string;
-          const filename = path.split("/").pop() || "";
-          const title = filename.replace(".md", "");
-
-          loadedGuides.push({
-            title,
-            content,
-            filename,
-          });
-        }
+        const entries = Object.entries(guidesContext);
+        const loadedGuides = await Promise.all(
+          entries.map(async ([path, loadContent]) => {
+            const content = (await loadContent()) as string;
+            const filename = path.split("/").pop() || "";
+            const title = filename.replace(".md", "");
+            return { title, content, filename } as Guide;
+          }),
+        );
 
         setGuides(loadedGuides);
         if (loadedGuides.length > 0 && !selectedGuideFilename) {

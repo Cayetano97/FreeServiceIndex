@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { ReactNode } from "react";
 
 interface PlatformScrollProps {
   platforms: string[];
@@ -40,16 +41,19 @@ const PlatformScroll = ({
           isSelected={selectedPlatform === "Universal"}
           onClick={() => onSelectPlatform("Universal")}
         />
-        {platforms
-          .filter((p) => p !== defaultPlatform)
-          .map((platform) => (
-            <PlatformButton
-              key={platform}
-              platform={platform}
-              isSelected={selectedPlatform === platform}
-              onClick={() => onSelectPlatform(platform)}
-            />
-          ))}
+        {platforms.reduce<ReactNode[]>((acc, platform) => {
+          if (platform !== defaultPlatform) {
+            acc.push(
+              <PlatformButton
+                key={platform}
+                platform={platform}
+                isSelected={selectedPlatform === platform}
+                onClick={() => onSelectPlatform(platform)}
+              />,
+            );
+          }
+          return acc;
+        }, [])}
       </div>
     </div>
   );

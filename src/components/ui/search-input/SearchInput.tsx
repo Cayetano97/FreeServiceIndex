@@ -14,7 +14,7 @@ const SearchInput = memo(function SearchInput({
   placeholder = "Buscar servicios...",
   className = "",
 }: SearchInputProps) {
-  const handleChange = useCallback(
+  const handleInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange(e.target.value);
     },
@@ -43,7 +43,7 @@ const SearchInput = memo(function SearchInput({
           className="search-input__field"
           placeholder={placeholder}
           value={value}
-          onChange={handleChange}
+          onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           aria-label={placeholder}
         />
