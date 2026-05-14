@@ -13,10 +13,10 @@
 
 | Technology                      | Purpose                                  | Version        |
 | :------------------------------ | :--------------------------------------- | :------------- |
-| **React**                       | Core UI library                          | 18.3.1         |
+| **React**                       | Core UI library                          | 19.2.6         |
 | **React Router**                | Client-side routing                      | 7.14.0         |
 | **Vite**                        | Build tool and development environment   | 8.0.3          |
-| **TypeScript**                  | Robust development and typing            | 5.9.3          |
+| **TypeScript**                  | Robust development and typing            | 5.8.3          |
 | **Framer Motion**               | Smooth animations and micro-interactions | 11.18.2        |
 | **Lucide React**                | Minimalist iconography                   | 0.446.0        |
 | **React Markdown + Remark GFM** | Markdown rendering with GitHub features  | 10.1.0 / 4.0.1 |
