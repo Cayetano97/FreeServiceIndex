@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useMemo, memo } from "react";
 import Header from "./components/Header";
 import CategoryScroll from "./components/CategoryScroll";
 import PlatformScroll from "./components/PlatformScroll";
 import SearchInput from "./components/ui/search-input/SearchInput";
 import ServiceGrid from "./components/ServiceGrid";
+import ErrorBoundary from "./components/ErrorBoundary";
 import servicesData from "./db/services.json";
 import { useUrlParam } from "@/lib/utils";
 
@@ -86,16 +86,14 @@ const Home = memo(() => {
 });
 
 const App = () => (
-  <Router>
+  <ErrorBoundary>
     <div className="app-shell">
       <Header />
       <main id="main-content" className="container main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <Home />
       </main>
     </div>
-  </Router>
+  </ErrorBoundary>
 );
 
 export default App;

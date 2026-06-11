@@ -241,6 +241,23 @@ img {
     transition: transform 0.1s ease;
 }
 
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .service-grid__item {
+        animation: none !important;
+    }
+}
+
 .service-grid {
     display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -277,6 +294,8 @@ img {
 
 .service-grid__item {
     height: 100%;
+    animation: fade-up 0.25s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.04s);
 }
 
 .card {

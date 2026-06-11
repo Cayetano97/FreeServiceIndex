@@ -1,22 +1,22 @@
-import { useEffect } from "react";
 import type { ReactNode } from "react";
 
 interface PlatformScrollProps {
   platforms: string[];
   selectedPlatform: string;
   onSelectPlatform: (platform: string) => void;
-  defaultPlatform?: string;
+}
+
+interface PlatformButtonProps {
+  platform: string;
+  isSelected: boolean;
+  onClick: () => void;
 }
 
 const PlatformButton = ({
   platform,
   isSelected,
   onClick,
-}: {
-  platform: string;
-  isSelected: boolean;
-  onClick: () => void;
-}) => (
+}: PlatformButtonProps) => (
   <button onClick={onClick} className={`chip ${isSelected ? "is-active" : ""}`}>
     {platform}
   </button>
@@ -26,12 +26,7 @@ const PlatformScroll = ({
   platforms,
   selectedPlatform = "Universal",
   onSelectPlatform,
-  defaultPlatform = "Universal",
 }: PlatformScrollProps) => {
-  useEffect(() => {
-    onSelectPlatform(defaultPlatform);
-  }, []);
-
   return (
     <div className="filter-group">
       <div className="filter-title">Plataformas</div>
@@ -42,7 +37,7 @@ const PlatformScroll = ({
           onClick={() => onSelectPlatform("Universal")}
         />
         {platforms.reduce<ReactNode[]>((acc, platform) => {
-          if (platform !== defaultPlatform) {
+          if (platform !== "Universal") {
             acc.push(
               <PlatformButton
                 key={platform}

@@ -72,15 +72,6 @@
       "platform": "Android"
     },
     {
-      "id": 8,
-      "title": "Anilab",
-      "description": "Aplicación Android / TV para ver anime.",
-      "category": "Streaming",
-      "downloadLink": "https://anilab.to/",
-      "icon": "https://anilab.to/images/logo@2x.svg",
-      "platform": "Android"
-    },
-    {
       "id": 9,
       "title": "Microsoft Activation Scripts (MAS)",
       "description": "Activa Windows Y Office gratis",

@@ -1,10 +1,7 @@
-import { useEffect } from "react";
-
 interface CategoryScrollProps {
   categories: string[];
   selectedCategory: string;
   onSelectCategory: (category: string) => void;
-  defaultCategory?: string;
 }
 
 const CategoryButton = ({
@@ -25,12 +22,7 @@ const CategoryScroll = ({
   categories,
   selectedCategory = "Todos",
   onSelectCategory,
-  defaultCategory = "Todos",
 }: CategoryScrollProps) => {
-  useEffect(() => {
-    onSelectCategory(defaultCategory);
-  }, []);
-
   return (
     <div className="filter-group">
       <div className="filter-title">Categorías</div>
