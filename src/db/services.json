@@ -241,15 +241,6 @@
       "downloadLink": "https://github.com/MorpheApp/morphe-manager",
       "icon": "https://avatars.githubusercontent.com/u/246280111?s=48&v=4",
       "platform": "Android"
-    },
-    {
-      "id": 28,
-      "title": "TimStreams",
-      "description": "Live streams gratis [Deportes, entretenimiento...].",
-      "category": "Streaming",
-      "downloadLink": "https://timstreams.net/",
-      "icon": "https://timstreams.net/assets/favicon.ico",
-      "platform": "Universal"
     }
   ]
 }
